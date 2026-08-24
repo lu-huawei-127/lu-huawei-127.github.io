@@ -1,335 +1,1403 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>陆华为 · 个人简历</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#030712">
+    <meta name="description" content="陆华为 · 个人主页">
+    <title>陆华为 · 个人主页</title>
+
+    <!-- ========== 字体：Plus Jakarta Sans（英文/数字）+ 中文系统无衬线 ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- ========== Tailwind CSS（CDN） ========== -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- ========== Lucide 图标库 ========== -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui',
+                               '-apple-system', '"PingFang SC"', '"Hiragino Sans GB"',
+                               '"Microsoft YaHei"', 'sans-serif'],
+                    },
+                    colors: {
+                        ink: {
+                            bg:    '#030712',
+                            glass: 'rgba(15, 23, 42, 0.5)',
+                        },
+                    },
+                    boxShadow: {
+                        glow:       '0 0 40px -10px rgba(34, 211, 238, 0.40)',
+                        glowSoft:  '0 0 30px -12px rgba(99, 102, 241, 0.35)',
+                        soft:       '0 12px 40px -20px rgba(0, 0, 0, 0.65)',
+                    },
+                    keyframes: {
+                        floatSlow: {
+                            '0%, 100%': { transform: 'translate3d(0,0,0) scale(1)' },
+                            '50%':      { transform: 'translate3d(2.5%, -2%, 0) scale(1.04)' },
+                        },
+                        fadeIn:    { to { opacity: 1; } },
+                        pulseDot:  { '0%,100%':{opacity:1},'50%':{opacity:.3} },
+                    },
+                    animation: {
+                        floatSlow: 'floatSlow 14s ease-in-out infinite',
+                        fadeIn:    'fadeIn .6s ease-out .1s forwards',
+                        pulseDot:  'pulseDot 1.6s ease-in-out infinite',
+                    },
+                }
+            }
+        }
+    </script>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ========== 基础 ========== */
+        html {
+            scroll-behavior: smooth;
+            scrollbar-gutter: stable both-edges;
+        }
         body {
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-            background: #030712;
-            color: #e2e8f0;
-            min-height: 100vh;
-            padding: 1.5rem;
-            position: relative;
+            font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui,
+                         -apple-system, "PingFang SC", "Hiragino Sans GB",
+                         "Microsoft YaHei", sans-serif;
+            background-color: #030712;
+            color: #cbd5e1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
-        .glow-1 {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%);
-            filter: blur(140px);
-            top: -100px;
-            left: -100px;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .glow-2 {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
-            filter: blur(140px);
-            bottom: -100px;
-            right: -100px;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1024px;
-            margin: 0 auto;
-        }
+        body > * { max-width: 100vw; }
+
+        /* ========== 毛玻璃卡片（严格 blur 8px） ========== */
         .glass {
-            background: rgba(15,23,42,0.6);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 1.5rem;
-            padding: 1.5rem 2rem;
-            transition: all 0.3s ease;
+            background: rgba(15, 23, 42, 0.5);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 16px;
+            box-shadow: 0 12px 40px -20px rgba(0,0,0,0.65);
+            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
         }
-        .glass:hover {
-            border-color: rgba(34,211,238,0.25);
-            box-shadow: 0 0 30px rgba(34,211,238,0.05);
+        .glass-hover:hover {
             transform: translateY(-2px);
+            border-color: rgba(34, 211, 238, 0.35);
+            box-shadow: 0 16px 50px -22px rgba(34, 211, 238, 0.45);
         }
+
+        /* ========== 渐变文字 ========== */
+        .text-gradient {
+            background: linear-gradient(135deg, #22d3ee 0%, #60a5fa 55%, #818cf8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .num-gradient {
+            background: linear-gradient(135deg, #22d3ee 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ========== 胶囊徽章（技术栈） ========== */
         .badge {
-            background: rgba(34,211,238,0.1);
-            border: 1px solid rgba(34,211,238,0.2);
-            color: #67e8f9;
-            padding: 0.2rem 0.8rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .btn-glow {
-            background: rgba(34,211,238,0.08);
-            border: 1px solid rgba(34,211,238,0.2);
-            color: #67e8f9;
-            padding: 0.6rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-block;
-            text-decoration: none;
-        }
-        .btn-glow:hover {
-            background: rgba(34,211,238,0.2);
-            box-shadow: 0 0 30px rgba(34,211,238,0.2);
-            transform: translateY(-2px);
-        }
-        .skill-tag {
-            background: rgba(34,211,238,0.06);
-            border: 1px solid rgba(34,211,238,0.12);
-            color: #94a3b8;
-            padding: 0.3rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
             font-weight: 500;
+            background: rgba(34, 211, 238, 0.10);
+            border: 1px solid rgba(34, 211, 238, 0.20);
+            color: #67e8f9;
         }
-        .cert-img {
-            width: 100%;
-            max-height: 160px;
-            object-fit: contain;
-            border-radius: 0.75rem;
-            margin-top: 0.75rem;
-            border: 1px solid rgba(255,255,255,0.06);
-            transition: transform 0.2s;
-            cursor: pointer;
+
+        /* ========== 按钮 ========== */
+        .btn-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff;
+            background: linear-gradient(135deg, #06b6d4, #6366f1);
+            box-shadow: 0 10px 30px -10px rgba(34,211,238,0.5);
+            transition: transform .3s, box-shadow .3s;
         }
-        .cert-img:hover {
-            transform: scale(1.02);
-            border-color: rgba(34,211,238,0.3);
+        .btn-glow:hover { transform: translateY(-1px); box-shadow: 0 0 50px -8px rgba(34,211,238,0.55); }
+        .btn-glow:active { transform: translateY(0); }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #cbd5e1;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.10);
+            transition: all .3s ease;
         }
-        @media (max-width: 640px) {
-            .glass { padding: 1.2rem 1.2rem; }
-            .container { padding: 0 0.5rem; }
-            body { padding: 0.8rem; }
-            .cert-img { max-height: 120px; }
+        .btn-ghost:hover {
+            background: rgba(34,211,238,0.08);
+            border-color: rgba(34,211,238,0.30);
+            color: #67e8f9;
         }
-        @media print {
-            .glow-1, .glow-2 { display: none; }
-            body { background: #fff; color: #000; }
-            .glass { background: #fff !important; backdrop-filter: none !important; border-color: #ccc; }
-            .badge { background: #eee; color: #000; border-color: #999; }
-            .skill-tag { background: #f0f0f0; color: #333; border-color: #ddd; }
-            .btn-glow { display: none; }
-            .cert-img { border-color: #ccc; max-height: 100px; }
+        .btn-ghost:active { transform: scale(0.98); }
+
+        /* ========== 滚动条美化 ========== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.10);
+            border-radius: 4px;
         }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(34,211,238,0.30); }
+
+        /* ========== 光晕装饰 ========== */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.14;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ========== 时间线 ========== */
+        .timeline-line {
+            position: absolute;
+            left: 7px;
+            top: 4px;
+            bottom: 4px;
+            width: 2px;
+            background: linear-gradient(to bottom,
+                rgba(34,211,238,0.6) 0%,
+                rgba(99,102,241,0.4) 50%,
+                transparent 100%);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #22d3ee 0%, rgba(34,211,238,0.2) 70%);
+            box-shadow: 0 0 0 4px rgba(34,211,238,0.12),
+                        0 0 20px 2px rgba(34,211,238,0.40);
+        }
+
+        /* ========== Toast ========== */
         .toast {
             position: fixed;
-            bottom: 30px;
             left: 50%;
-            transform: translateX(-50%) translateY(80px);
-            background: rgba(15,23,42,0.8);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.1);
+            bottom: 32px;
+            transform: translateX(-50%) translateY(12px);
+            z-index: 200;
+            padding: 12px 20px;
+            border-radius: 14px;
+            background: rgba(15, 23, 42, 0.75);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            box-shadow: 0 0 40px -10px rgba(34, 211, 238, 0.45);
             color: #e2e8f0;
-            padding: 0.8rem 2rem;
-            border-radius: 9999px;
-            font-size: 0.9rem;
+            font-size: 14px;
             font-weight: 500;
             opacity: 0;
-            transition: all 0.4s ease;
-            z-index: 999;
             pointer-events: none;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            transition: opacity .35s ease, transform .35s ease;
         }
         .toast.show {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
+
+        /* ========== Lucide 图标统一描边 ========== */
+        .lucide { stroke-width: 1.75; flex-shrink: 0; }
+
+        /* ========== 经历详情 Modal ========== */
+        .exp-modal {
+            position: fixed; inset: 0; z-index: 300;
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+            opacity: 0; visibility: hidden;
+            transition: opacity .15s ease, visibility .15s ease;
+        }
+        .exp-modal.show { opacity: 1; visibility: visible; }
+        .exp-modal-backdrop {
+            position: absolute; inset: 0;
+            background: rgba(3, 7, 18, 0.92);
+        }
+        .exp-modal-card {
+            position: relative; z-index: 1;
+            max-width: 720px; width: 100%;
+            max-height: 90vh; overflow: hidden;
+            border-radius: 20px;
+            transform: translateY(10px) scale(.98);
+            transition: transform .15s cubic-bezier(.4, 0, .2, 1);
+            display: flex; flex-direction: column;
+        }
+        .exp-modal.show .exp-modal-card { transform: translateY(0) scale(1); }
+        .exp-modal-close {
+            position: absolute; top: 12px; right: 12px; z-index: 2;
+            width: 36px; height: 36px; border-radius: 50%;
+            display: grid; place-items: center;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            transition: all .25s ease;
+        }
+        .exp-modal-close:hover {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #fecaca;
+            transform: rotate(90deg);
+        }
+        .exp-modal-img {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            flex-shrink: 0;
+        }
+        .exp-modal-badge {
+            position: absolute; top: 12px; left: 12px;
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 5px 10px; border-radius: 999px;
+            font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .exp-modal-body {
+            padding: 20px 22px 22px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .exp-modal-body::-webkit-scrollbar { width: 6px; }
+        .exp-modal-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        .exp-fact {
+            display: flex; align-items: center; gap: 10px;
+            padding: 9px 12px; border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 13px;
+        }
+        .exp-fact .label {
+            color: #94a3b8; min-width: 70px;
+            font-size: 11px; font-weight: 600; letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+        .exp-fact .value { color: #e2e8f0; font-weight: 600; }
+
+        /* 卡片底部「点击查看详情」提示 */
+        .exp-hint {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 11px; color: #64748b;
+            transition: color .3s ease;
+        }
+        .exp-hint i { transition: transform .3s ease; }
+        .exp-card:hover .exp-hint { color: #67e8f9; }
+        .exp-card:hover .exp-hint i { transform: translate(2px, -2px); }
+        .exp-card:focus-visible {
+            outline: 2px solid rgba(34, 211, 238, 0.55);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 640px) {
+            .exp-modal { padding: 12px; }
+            .exp-modal-card { max-height: 95vh; border-radius: 16px; }
+            .exp-modal-img { aspect-ratio: 4 / 3; }
+            .exp-modal-body { padding: 16px 16px 18px; }
+        }
+
+        /* ========== 移动端 ========== */
+        @media (max-width: 768px) {
+            .orb { filter: blur(100px); }
+        }
     </style>
 </head>
 <body>
-<div class="glow-1"></div>
-<div class="glow-2"></div>
 
-<div class="container">
+<!-- ========== 背景光晕：左上青蓝 / 右下紫蓝 ========== -->
+<div class="orb" style="top:-180px; left:-140px; width:560px; height:560px;
+     background: radial-gradient(circle, #22d3ee 0%, transparent 70%);"
+     aria-hidden="true"></div>
+<div class="orb animate-floatSlow" style="bottom:-200px; right:-180px; width:620px; height:620px;
+     background: radial-gradient(circle, #6366f1 0%, transparent 70%);"
+     aria-hidden="true"></div>
 
-    <!-- 头部 -->
-    <header class="glass mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
-        <div>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white">陆华为</h1>
-            <p class="text-cyan-400 text-lg font-medium mt-1">准大一新生 · AI 应用实践者</p>
-            <p class="text-slate-400 text-sm mt-1">广东江门南粤学院 · 计算机科学与技术（2026级）</p>
-        </div>
-        <div class="mt-4 md:mt-0 flex flex-wrap gap-3">
-            <span class="flex items-center gap-1 text-slate-300 text-sm"><i data-lucide="mail" class="w-4 h-4"></i> <span class="text-slate-400">2273705231@qq.com</span></span>
-            <span class="flex items-center gap-1 text-slate-300 text-sm"><i data-lucide="phone" class="w-4 h-4"></i> <span class="text-slate-400">13822729988</span></span>
-        </div>
-    </header>
-
-    <!-- 关于我 -->
-    <section class="glass mb-6">
-        <div class="flex items-center gap-2 mb-3">
-            <i data-lucide="user" class="w-5 h-5 text-cyan-400"></i>
-            <h2 class="text-xl font-bold text-white">关于我</h2>
-        </div>
-        <p class="text-slate-300 leading-relaxed">
-            准大一新生，对人工智能充满热情。通过达摩院与阿里云认证体系系统学习了 AI 训练、智能体构建及 AI 编码实践。具备良好的自驱力与快速学习能力，期望在大学期间深入探索 AI 技术与工程应用。
-        </p>
-    </section>
-
-    <!-- 技能 -->
-    <section class="glass mb-6">
-        <div class="flex items-center gap-2 mb-3">
-            <i data-lucide="cpu" class="w-5 h-5 text-cyan-400"></i>
-            <h2 class="text-xl font-bold text-white">专业技能</h2>
-        </div>
-        <div class="flex flex-wrap gap-2">
-            <span class="skill-tag">Python（基础）</span>
-            <span class="skill-tag">AI 工具（DeepSeek / Kimi / CodeX）</span>
-            <span class="skill-tag">阿里云百炼平台</span>
-            <span class="skill-tag">通义灵码</span>
-            <span class="skill-tag">达摩院智能客服</span>
-            <span class="skill-tag">HTML / CSS（入门）</span>
-        </div>
-    </section>
-
-    <!-- 证书与认证 -->
-    <section class="glass mb-6">
-        <div class="flex items-center gap-2 mb-4">
-            <i data-lucide="award" class="w-5 h-5 text-cyan-400"></i>
-            <h2 class="text-xl font-bold text-white">认证与证书</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- 高级训练师 -->
-            <div class="bg-slate-800/40 rounded-xl p-4 border border-white/5 hover:border-cyan-400/30 transition">
-                <div class="flex justify-between items-start">
-                    <span class="badge">高级</span>
-                    <span class="text-xs text-slate-500">2026.07 – 2027.07</span>
-                </div>
-                <h3 class="text-white font-semibold text-base mt-2">人工智能训练师（高级）</h3>
-                <p class="text-slate-400 text-sm">达摩院-机器智能技术事业部</p>
-                <p class="text-slate-500 text-xs mt-1">证书号：AIT260719212528000107</p>
-                <img src="cert-advanced.jpg" alt="高级训练师证书" class="cert-img" onclick="window.open(this.src)" />
-            </div>
-            <!-- 初级训练师 -->
-            <div class="bg-slate-800/40 rounded-xl p-4 border border-white/5 hover:border-cyan-400/30 transition">
-                <div class="flex justify-between items-start">
-                    <span class="badge">初级</span>
-                    <span class="text-xs text-slate-500">2026.07 – 2027.07</span>
-                </div>
-                <h3 class="text-white font-semibold text-base mt-2">人工智能训练师（初级）</h3>
-                <p class="text-slate-400 text-sm">达摩院-机器智能技术事业部</p>
-                <p class="text-slate-500 text-xs mt-1">证书号：AIT260730114325000123</p>
-                <img src="cert-junior.jpg" alt="初级训练师证书" class="cert-img" onclick="window.open(this.src)" />
-            </div>
-            <!-- 百炼智能体 -->
-            <div class="bg-slate-800/40 rounded-xl p-4 border border-white/5 hover:border-cyan-400/30 transition">
-                <div class="flex justify-between items-start">
-                    <span class="badge">专项</span>
-                    <span class="text-xs text-slate-500">2026.07 – 2028.07</span>
-                </div>
-                <h3 class="text-white font-semibold text-base mt-2">基于百炼平台构建智能体应用</h3>
-                <p class="text-slate-400 text-sm">阿里云 Apsara Clouder</p>
-                <p class="text-slate-500 text-xs mt-1">证书号：CLDM02260702735271</p>
-                <img src="cert-bailian.png" alt="百炼证书" class="cert-img" onclick="window.open(this.src)" />
-            </div>
-            <!-- 通义灵码 -->
-            <div class="bg-slate-800/40 rounded-xl p-4 border border-white/5 hover:border-cyan-400/30 transition">
-                <div class="flex justify-between items-start">
-                    <span class="badge">专项</span>
-                    <span class="text-xs text-slate-500">2026.07 – 2028.07</span>
-                </div>
-                <h3 class="text-white font-semibold text-base mt-2">基于通义灵码实现高效AI编码实践</h3>
-                <p class="text-slate-400 text-sm">阿里云 Apsara Clouder</p>
-                <p class="text-slate-500 text-xs mt-1">证书号：CLDM07260702734815</p>
-                <img src="cert-lingma.png" alt="通义灵码证书" class="cert-img" onclick="window.open(this.src)" />
-            </div>
-        </div>
-    </section>
-
-    <!-- 实践经历 -->
-    <section class="glass mb-6">
-        <div class="flex items-center gap-2 mb-3">
-            <i data-lucide="briefcase" class="w-5 h-5 text-cyan-400"></i>
-            <h2 class="text-xl font-bold text-white">实践经历</h2>
-        </div>
-        <ul class="space-y-3 text-slate-300">
-            <li class="flex gap-3">
-                <span class="text-cyan-400">●</span>
-                <div><span class="font-semibold text-white">高中阶段自学AI基础</span> – 利用开源资料系统学习机器学习基本概念，并通过达摩院认证体系完成初级与高级考核。</div>
-            </li>
-            <li class="flex gap-3">
-                <span class="text-cyan-400">●</span>
-                <div><span class="font-semibold text-white">AI工具链探索</span> – 熟练使用 DeepSeek、Kimi、CodeX 等工具辅助学习与编程，并参与社区内部分享。</div>
-            </li>
-            <li class="flex gap-3">
-                <span class="text-cyan-400">●</span>
-                <div><span class="font-semibold text-white">个人作品部署</span> – 独立将个人简历网页部署至 Netlify，具备基础的 web 发布能力。</div>
-            </li>
+<!-- ========== 导航栏 ========== -->
+<nav class="fixed top-0 inset-x-0 z-50 border-b border-white/5
+            bg-slate-950/60 backdrop-blur-md [-webkit-backdrop-filter:blur(8px)]">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8 h-14 flex items-center justify-between">
+        <a href="#top" class="flex items-center gap-2.5 group">
+            <span class="w-8 h-8 rounded-lg grid place-items-center
+                         bg-gradient-to-br from-cyan-400 to-indigo-500
+                         text-slate-950 font-black text-sm shadow-glow">L</span>
+            <span class="font-bold text-white text-base group-hover:text-cyan-300 transition-colors">
+                陆华为<span class="text-cyan-400">.</span>
+            </span>
+        </a>
+        <ul class="hidden md:flex items-center gap-7 text-[13px]">
+            <li><a href="#about"       class="text-slate-300 hover:text-cyan-300 transition-colors">关于</a></li>
+            <li><a href="#skills"      class="text-slate-300 hover:text-cyan-300 transition-colors">技能</a></li>
+            <li><a href="#certs"       class="text-slate-300 hover:text-cyan-300 transition-colors">证书</a></li>
+            <li><a href="#timeline"    class="text-slate-300 hover:text-cyan-300 transition-colors">历程</a></li>
+            <li><a href="#projects"    class="text-slate-300 hover:text-cyan-300 transition-colors">项目</a></li>
+            <li><a href="#experience" class="text-slate-300 hover:text-cyan-300 transition-colors">经历</a></li>
+            <li><a href="#contact"     class="btn-ghost !py-1.5 !px-3">
+                <i data-lucide="mail" class="w-4 h-4"></i>联系
+            </a></li>
         </ul>
-    </section>
+        <button id="menuToggle" aria-label="菜单"
+                class="md:hidden w-9 h-9 grid place-items-center rounded-lg
+                       border border-white/10 bg-white/5 text-slate-200">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/5 bg-slate-950/90">
+        <ul class="px-5 py-3 flex flex-col gap-1 text-sm">
+            <li><a href="#about"    class="block px-3 py-2.5 rounded-lg text-slate-200 hover:bg-white/5 hover:text-cyan-300">关于我</a></li>
+            <li><a href="#skills"   class="block px-3 py-2.5 rounded-lg text-slate-200 hover:bg-white/5 hover:text-cyan-300">专业技能</a></li>
+            <li><a href="#certs"    class="block px-3 py-2.5 rounded-lg text-slate-200 hover:bg-white/5 hover:text-cyan-300">认证证书</a></li>
+            <li><a href="#timeline" class="block px-3 py-2.5 rounded-lg text-slate-200 hover:bg-white/5 hover:text-cyan-300">成长历程</a></li>
+            <li><a href="#projects" class="block px-3 py-2.5 rounded-lg text-slate-200 hover:bg-white/5 hover:text-cyan-300">实践项目</a></li>
+            <li><a href="#experience" class="block px-3 py-2.5 rounded-lg text-slate-200 hover:bg-white/5 hover:text-cyan-300">校园经历</a></li>
+            <li><a href="#contact"  class="block px-3 py-2.5 rounded-lg text-cyan-300 hover:bg-white/5">联系方式</a></li>
+        </ul>
+    </div>
+</nav>
 
-    <!-- 兴趣爱好 -->
-    <section class="glass mb-6">
-        <div class="flex items-center gap-2 mb-3">
-            <i data-lucide="heart" class="w-5 h-5 text-cyan-400"></i>
-            <h2 class="text-xl font-bold text-white">兴趣爱好</h2>
-        </div>
-        <div class="flex flex-wrap gap-2">
-            <span class="skill-tag">阅读科技资讯</span>
-            <span class="skill-tag">AI 绘画与创意</span>
-            <span class="skill-tag">开源社区交流</span>
-            <span class="skill-tag">羽毛球</span>
-            <span class="skill-tag">电子音乐</span>
-        </div>
-    </section>
+<!-- ========== HERO 头部 ========== -->
+<header id="top" class="pt-32 md:pt-36 pb-14 md:pb-20">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="flex flex-col items-center text-center">
+            <!-- 头像（CSS 渐变占位 + glow） -->
+            <div class="relative mb-7">
+                <div class="absolute -inset-2.5 rounded-full
+                            bg-gradient-to-tr from-cyan-400/30 via-indigo-500/20 to-fuchsia-500/20
+                            blur-2xl opacity-90"></div>
+                <div class="relative w-28 h-28 md:w-36 md:h-36 rounded-full grid place-items-center
+                            border-2 border-white/15 bg-gradient-to-br from-slate-800 to-slate-900
+                            shadow-[0_20px_60px_-12px_rgba(34,211,238,0.35)]">
+                    <span class="text-5xl md:text-6xl font-extrabold text-gradient">陆</span>
+                </div>
+            </div>
 
-    <!-- 底部 -->
-    <footer class="glass flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div class="flex items-center gap-4 text-slate-400 text-sm">
-            <span class="flex items-center gap-1"><i data-lucide="mail" class="w-4 h-4"></i> 2273705231@qq.com</span>
-            <span class="flex items-center gap-1"><i data-lucide="phone" class="w-4 h-4"></i> 13822729988</span>
-        </div>
-        <div class="flex gap-3">
-            <button class="btn-glow" id="copyEmailBtn">复制邮箱</button>
-            <a href="https://github.com/lu-huawei-127" target="_blank" class="btn-glow" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.1); color:#cbd5e1;">GitHub</a>
-        </div>
-    </footer>
+            <!-- 标签 -->
+            <div class="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full
+                        border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 text-xs md:text-sm font-medium">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulseDot"></span>
+                准大一新生 · AI 应用实践者
+            </div>
 
+            <!-- 大标题 -->
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-3">
+                你好，我是 <span class="text-gradient">陆华为</span>
+            </h1>
+
+            <!-- 学校 -->
+            <p class="text-slate-400 text-sm md:text-base mb-6">
+                <i data-lucide="graduation-cap" class="w-4 h-4 inline -mt-0.5 mr-1 text-cyan-400"></i>
+                广东江门南粤学院 · 计算机科学与技术（2026 级）
+            </p>
+
+            <!-- 联系方式速览 -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 mb-8 text-[13px]">
+                <a href="mailto:2273705231@qq.com" class="btn-ghost">
+                    <i data-lucide="mail" class="w-4 h-4"></i>2273705231@qq.com
+                </a>
+                <a href="tel:13822729988" class="btn-ghost">
+                    <i data-lucide="phone" class="w-4 h-4"></i>13822729988
+                </a>
+            </div>
+
+            <!-- CTA -->
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <a href="#certs" class="btn-glow">
+                    <i data-lucide="award" class="w-4 h-4"></i>查看认证
+                </a>
+                <a href="#projects" class="btn-ghost">
+                    <i data-lucide="folder-git-2" class="w-4 h-4"></i>看看项目
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ========== 座右铭金句 ========== -->
+<section class="pb-2 md:pb-4">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="glass p-6 md:p-9 relative overflow-hidden">
+            <!-- 装饰大引号 -->
+            <i data-lucide="quote" class="absolute -top-3 -left-2 w-20 h-20 text-cyan-400/10 rotate-180"></i>
+            <div class="relative">
+                <p class="text-lg md:text-2xl font-bold text-white leading-relaxed mb-3">
+                    <span class="text-gradient">代码</span>是写给人看的，<span class="text-gradient">AI</span> 是写给未来的。
+                </p>
+                <p class="text-slate-400 text-sm md:text-base">
+                    在算法与热爱之间，把每一行代码都写成自己的注解。
+                </p>
+                <div class="mt-4 inline-flex items-center gap-2 text-cyan-400 text-xs font-semibold tracking-widest uppercase">
+                    <span class="w-6 h-px bg-cyan-400/60"></span>
+                    Lu Huawei · Motto
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 关于我 + 数据看板 ========== -->
+<section id="about" class="py-12 md:py-16 scroll-mt-20">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="flex items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 text-cyan-400 text-[11px] font-semibold tracking-widest uppercase mb-2">
+                    <i data-lucide="user-round" class="w-3.5 h-3.5"></i> ABOUT
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">关于我</h2>
+            </div>
+            <div class="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-cyan-400/60 via-white/10 to-transparent"></div>
+        </div>
+
+        <!-- 简介玻璃卡 -->
+        <div class="glass p-5 md:p-7 mb-5">
+            <p class="text-slate-300 text-[15px] md:text-base leading-8 md:leading-9">
+                准大一新生，对<span class="text-cyan-300 font-semibold">人工智能</span>充满热情。
+                通过<span class="text-white font-semibold">达摩院</span>与<span class="text-white font-semibold">阿里云</span>认证体系
+                系统学习了 <span class="badge mx-0.5"><i data-lucide="brain-circuit" class="w-3 h-3"></i>AI 训练</span>、
+                <span class="badge mx-0.5"><i data-lucide="bot" class="w-3 h-3"></i>智能体构建</span>及
+                <span class="badge mx-0.5"><i data-lucide="code-2" class="w-3 h-3"></i>AI 编码实践</span>。
+                具备良好的自驱力与快速学习能力，期望在大学期间深入探索 AI 技术与工程应用。
+            </p>
+        </div>
+
+        <!-- 数据看板 -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="glass glass-hover p-5 md:p-6 text-center">
+                <i data-lucide="badge-check" class="w-6 h-6 mx-auto mb-2 text-cyan-400"></i>
+                <div class="num-gradient text-4xl md:text-5xl font-extrabold mb-1">4</div>
+                <p class="text-xs md:text-sm text-slate-400">项 AI 认证</p>
+            </div>
+            <div class="glass glass-hover p-5 md:p-6 text-center">
+                <i data-lucide="rocket" class="w-6 h-6 mx-auto mb-2 text-indigo-400"></i>
+                <div class="num-gradient text-4xl md:text-5xl font-extrabold mb-1">1</div>
+                <p class="text-xs md:text-sm text-slate-400">个已上线网站</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 专业技能 ========== -->
+<section id="skills" class="py-12 md:py-16 scroll-mt-20">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="flex items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 text-cyan-400 text-[11px] font-semibold tracking-widest uppercase mb-2">
+                    <i data-lucide="wrench" class="w-3.5 h-3.5"></i> SKILLS
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">专业技能</h2>
+            </div>
+            <div class="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-cyan-400/60 via-white/10 to-transparent"></div>
+        </div>
+
+        <div class="glass p-5 md:p-7">
+            <ul class="flex flex-wrap gap-2.5 md:gap-3">
+                <li class="badge"><i data-lucide="code-2"    class="w-3.5 h-3.5"></i>Python（基础）</li>
+                <li class="badge"><i data-lucide="sparkles"  class="w-3.5 h-3.5"></i>AI 工具（DeepSeek / Kimi / CodeX）</li>
+                <li class="badge"><i data-lucide="cloud"     class="w-3.5 h-3.5"></i>阿里云百炼平台</li>
+                <li class="badge"><i data-lucide="terminal"  class="w-3.5 h-3.5"></i>通义灵码</li>
+                <li class="badge"><i data-lucide="headphones" class="w-3.5 h-3.5"></i>达摩院智能客服</li>
+                <li class="badge"><i data-lucide="file-code-2" class="w-3.5 h-3.5"></i>HTML / CSS（入门）</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 认证与证书 ========== -->
+<section id="certs" class="py-12 md:py-16 scroll-mt-20">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="flex items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 text-cyan-400 text-[11px] font-semibold tracking-widest uppercase mb-2">
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i> CERTIFICATES
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">认证与证书</h2>
+                <p class="mt-2 text-slate-400 text-sm">点击证书图片可查看大图</p>
+            </div>
+            <div class="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-cyan-400/60 via-white/10 to-transparent"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+
+            <!-- 证书 1：高级训练师 -->
+            <article class="glass glass-hover overflow-hidden">
+                <a href="../证/cert-advanced.jpg" target="_blank" rel="noopener" class="block group">
+                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden">
+                        <img src="../证/cert-advanced.jpg" alt="人工智能训练师（高级）证书"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    </div>
+                </a>
+                <div class="p-4">
+                    <span class="inline-block mb-2 px-2 py-0.5 rounded text-[11px] font-bold
+                                 bg-amber-500/15 border border-amber-500/30 text-amber-300">高级</span>
+                    <h3 class="text-white font-bold text-sm leading-snug mb-1">人工智能训练师（高级）</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-2">达摩院-机器智能技术事业部</p>
+                    <p class="text-slate-500 text-[10px] font-mono break-all">证号 AIT260719212528000107</p>
+                </div>
+            </article>
+
+            <!-- 证书 2：初级训练师 -->
+            <article class="glass glass-hover overflow-hidden">
+                <a href="../证/cert-junior.jpg" target="_blank" rel="noopener" class="block group">
+                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden">
+                        <img src="../证/cert-junior.jpg" alt="人工智能训练师（初级）证书"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    </div>
+                </a>
+                <div class="p-4">
+                    <span class="inline-block mb-2 px-2 py-0.5 rounded text-[11px] font-bold
+                                 bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">初级</span>
+                    <h3 class="text-white font-bold text-sm leading-snug mb-1">人工智能训练师（初级）</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-2">达摩院-机器智能技术事业部</p>
+                    <p class="text-slate-500 text-[10px] font-mono break-all">证号 AIT260730114325000123</p>
+                </div>
+            </article>
+
+            <!-- 证书 3：百炼智能体 -->
+            <article class="glass glass-hover overflow-hidden">
+                <a href="../证/cert-bailian.png" target="_blank" rel="noopener" class="block group">
+                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden">
+                        <img src="../证/cert-bailian.png" alt="基于百炼平台构建智能体应用证书"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    </div>
+                </a>
+                <div class="p-4">
+                    <span class="inline-block mb-2 px-2 py-0.5 rounded text-[11px] font-bold
+                                 bg-indigo-500/15 border border-indigo-500/30 text-indigo-300">专项</span>
+                    <h3 class="text-white font-bold text-sm leading-snug mb-1">基于百炼平台构建智能体应用</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-2">阿里云 Apsara Clouder</p>
+                    <p class="text-slate-500 text-[10px] font-mono break-all">证号 CLDM02260702735271</p>
+                </div>
+            </article>
+
+            <!-- 证书 4：通义灵码 -->
+            <article class="glass glass-hover overflow-hidden">
+                <a href="../证/cert-lingma.png" target="_blank" rel="noopener" class="block group">
+                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden">
+                        <img src="../证/cert-lingma.png" alt="基于通义灵码实现高效AI编码实践证书"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    </div>
+                </a>
+                <div class="p-4">
+                    <span class="inline-block mb-2 px-2 py-0.5 rounded text-[11px] font-bold
+                                 bg-indigo-500/15 border border-indigo-500/30 text-indigo-300">专项</span>
+                    <h3 class="text-white font-bold text-sm leading-snug mb-1">基于通义灵码实现高效 AI 编码实践</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-2">阿里云 Apsara Clouder</p>
+                    <p class="text-slate-500 text-[10px] font-mono break-all">证号 CLDM07260702734815</p>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== 成长历程（垂直时间线） ========== -->
+<section id="timeline" class="py-12 md:py-16 scroll-mt-20">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="flex items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 text-cyan-400 text-[11px] font-semibold tracking-widest uppercase mb-2">
+                    <i data-lucide="git-commit-vertical" class="w-3.5 h-3.5"></i> TIMELINE
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">成长历程</h2>
+            </div>
+            <div class="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-cyan-400/60 via-white/10 to-transparent"></div>
+        </div>
+
+        <div class="glass p-5 md:p-7">
+            <div class="relative pl-7">
+                <!-- 时间线竖线 -->
+                <div class="timeline-line"></div>
+
+                <!-- 节点 1 -->
+                <div class="relative mb-7">
+                    <div class="timeline-dot"></div>
+                    <div class="text-cyan-300 text-xs font-bold tracking-wider mb-1">2024 — 2026</div>
+                    <h3 class="text-white font-bold text-base mb-1.5">高中 · 自学 AI 基础</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">利用开源资料学习机器学习基础，建立对 AI 的初步认知与兴趣。</p>
+                </div>
+
+                <!-- 节点 2 -->
+                <div class="relative mb-7">
+                    <div class="timeline-dot"></div>
+                    <div class="text-cyan-300 text-xs font-bold tracking-wider mb-1">2026.07</div>
+                    <h3 class="text-white font-bold text-base mb-1.5">达摩院人工智能训练师（初级 + 高级）</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">系统学习 AI 训练与智能客服流程，取得初高级双认证。</p>
+                </div>
+
+                <!-- 节点 3 -->
+                <div class="relative mb-7">
+                    <div class="timeline-dot"></div>
+                    <div class="text-cyan-300 text-xs font-bold tracking-wider mb-1">2026.07</div>
+                    <h3 class="text-white font-bold text-base mb-1.5">阿里云 Clouder 专项认证（百炼 + 通义灵码）</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">掌握智能体构建与 AI 编码实践。</p>
+                </div>
+
+                <!-- 节点 4 -->
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="text-cyan-300 text-xs font-bold tracking-wider mb-1">2026.08</div>
+                    <h3 class="text-white font-bold text-base mb-1.5">准大一新生 · 即将入学南粤学院</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">计算机科学与技术专业，正式开启大学生活。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 实践与项目 ========== -->
+<section id="projects" class="py-12 md:py-16 scroll-mt-20">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="flex items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 text-cyan-400 text-[11px] font-semibold tracking-widest uppercase mb-2">
+                    <i data-lucide="folder-git-2" class="w-3.5 h-3.5"></i> PROJECTS
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">实践与项目</h2>
+            </div>
+            <div class="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-cyan-400/60 via-white/10 to-transparent"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+
+            <!-- 项目 1 -->
+            <article class="glass glass-hover p-5 md:p-6">
+                <div class="flex items-start gap-3.5 mb-3.5">
+                    <div class="w-11 h-11 rounded-xl grid place-items-center shrink-0
+                                bg-gradient-to-br from-cyan-500/25 to-indigo-500/20 border border-white/10 text-cyan-300">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-base md:text-lg leading-snug pt-1">个人简历网站</h3>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    基于 HTML + CSS + Tailwind 构建，部署于 GitHub Pages，支持响应式与毛玻璃设计。
+                </p>
+
+                <!-- 志愿服务 / 社区主题矢量插画 -->
+                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                     class="w-full aspect-[2/1] rounded-2xl mb-4 block"
+                     preserveAspectRatio="xMidYMid slice" role="img"
+                     aria-label="社区志愿服务主题插画">
+                    <defs>
+                        <linearGradient id="volBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0b1729"/>
+                            <stop offset="100%" stop-color="#020617"/>
+                        </linearGradient>
+                        <radialGradient id="volGlow1" cx="30%" cy="50%" r="55%">
+                            <stop offset="0%" stop-color="#10b981" stop-opacity="0.40"/>
+                            <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="volGlow2" cx="80%" cy="30%" r="45%">
+                            <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.30"/>
+                            <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+
+                    <rect width="400" height="200" fill="url(#volBg)" rx="16"/>
+                    <rect width="400" height="200" fill="url(#volGlow1)"/>
+                    <rect width="400" height="200" fill="url(#volGlow2)"/>
+
+                    <!-- 装饰星点 -->
+                    <circle cx="50"  cy="40"  r="2"   fill="#34d399" opacity="0.55"/>
+                    <circle cx="350" cy="160" r="2"   fill="#22d3ee" opacity="0.55"/>
+                    <circle cx="80"  cy="170" r="1.5" fill="#34d399" opacity="0.45"/>
+                    <circle cx="370" cy="50"  r="1.5" fill="#22d3ee" opacity="0.45"/>
+
+                    <!-- 中心心形 -->
+                    <g transform="translate(200, 95)">
+                        <path d="M0,-12 C-5,-22 -22,-22 -22,-8 C-22,5 0,22 0,22 C0,22 22,5 22,-8 C22,-22 5,-22 0,-12 Z"
+                              fill="#10b981" fill-opacity="0.25" stroke="#34d399"
+                              stroke-width="2.5" stroke-linejoin="round"/>
+                    </g>
+
+                    <!-- 左人形 -->
+                    <g transform="translate(140, 100)" stroke="#67e8f9" stroke-width="2.5"
+                       fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="0" cy="0" r="10"/>
+                        <path d="M-15,30 Q0,18 15,30 L15,55 L-15,55 Z"/>
+                    </g>
+
+                    <!-- 右人形 -->
+                    <g transform="translate(260, 100)" stroke="#67e8f9" stroke-width="2.5"
+                       fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="0" cy="0" r="10"/>
+                        <path d="M-15,30 Q0,18 15,30 L15,55 L-15,55 Z"/>
+                    </g>
+                </svg>
+
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge"><i data-lucide="file-code-2" class="w-3 h-3"></i>HTML/CSS</span>
+                    <span class="badge"><i data-lucide="palette"     class="w-3 h-3"></i>Tailwind</span>
+                    <span class="badge"><i data-lucide="github"      class="w-3 h-3"></i>GitHub Pages</span>
+                </div>
+            </article>
+
+            <!-- 项目 2 -->
+            <article class="glass glass-hover p-5 md:p-6">
+                <div class="flex items-start gap-3.5 mb-3.5">
+                    <div class="w-11 h-11 rounded-xl grid place-items-center shrink-0
+                                bg-gradient-to-br from-indigo-500/25 to-fuchsia-500/20 border border-white/10 text-indigo-300">
+                        <i data-lucide="wrench" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-base md:text-lg leading-snug pt-1">AI 工具链探索</h3>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    熟练使用 DeepSeek、Kimi、CodeX 等工具辅助编程与内容创作，并参与社区分享。
+                </p>
+
+                <!-- 篮球主题矢量插画 -->
+                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
+                     class="w-full aspect-[2/1] rounded-2xl mb-4 block"
+                     preserveAspectRatio="xMidYMid slice" role="img"
+                     aria-label="篮球主题插画">
+                    <defs>
+                        <linearGradient id="bballBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1a1206"/>
+                            <stop offset="100%" stop-color="#020617"/>
+                        </linearGradient>
+                        <radialGradient id="bballGlow1" cx="70%" cy="50%" r="55%">
+                            <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
+                            <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="bballGlow2" cx="20%" cy="30%" r="45%">
+                            <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.25"/>
+                            <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="bballSphere" cx="35%" cy="35%" r="65%">
+                            <stop offset="0%"  stop-color="#fb923c"/>
+                            <stop offset="60%" stop-color="#f97316"/>
+                            <stop offset="100%" stop-color="#c2410c"/>
+                        </radialGradient>
+                    </defs>
+
+                    <rect width="400" height="200" fill="url(#bballBg)" rx="16"/>
+                    <rect width="400" height="200" fill="url(#bballGlow1)"/>
+                    <rect width="400" height="200" fill="url(#bballGlow2)"/>
+
+                    <!-- 装饰星点 -->
+                    <circle cx="50"  cy="40"  r="2"   fill="#fbbf24" opacity="0.55"/>
+                    <circle cx="350" cy="160" r="2"   fill="#f97316" opacity="0.55"/>
+                    <circle cx="80"  cy="170" r="1.5" fill="#fbbf24" opacity="0.45"/>
+                    <circle cx="370" cy="50"  r="1.5" fill="#f97316" opacity="0.45"/>
+
+                    <!-- 抛物轨迹 -->
+                    <path d="M70 160 Q200 50 330 160" fill="none" stroke="#fbbf24"
+                          stroke-width="1.5" stroke-dasharray="3 5" opacity="0.5"/>
+
+                    <!-- 中心篮球 -->
+                    <g transform="translate(200, 100)">
+                        <circle cx="0" cy="0" r="40" fill="url(#bballSphere)"
+                                stroke="#ea580c" stroke-width="2"/>
+                        <line x1="-40" y1="0" x2="40" y2="0"
+                              stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>
+                        <line x1="0" y1="-40" x2="0" y2="40"
+                              stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>
+                        <path d="M-30,-26 Q0,0 30,26" fill="none"
+                              stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>
+                        <path d="M-30,26 Q0,0 30,-26" fill="none"
+                              stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>
+                    </g>
+
+                    <!-- 左下：抽象篮筐 -->
+                    <g transform="translate(60, 130)" stroke="#fbbf24"
+                       stroke-width="2" fill="none" opacity="0.7"
+                       stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="-12" y="0" width="24" height="16" rx="3"/>
+                        <line x1="0" y1="16" x2="0" y2="42"/>
+                    </g>
+
+                    <!-- 右上：3PT 标记 -->
+                    <text x="350" y="58" text-anchor="end"
+                          font-family="Plus Jakarta Sans, sans-serif"
+                          font-size="13" font-weight="700" fill="#fbbf24" opacity="0.85">
+                        3PT
+                    </text>
+                </svg>
+
+                <div class="flex flex-wrap gap-2">
+                    <span class="badge"><i data-lucide="sparkles" class="w-3 h-3"></i>DeepSeek</span>
+                    <span class="badge"><i data-lucide="message-circle" class="w-3 h-3"></i>Kimi</span>
+                    <span class="badge"><i data-lucide="code"     class="w-3 h-3"></i>CodeX</span>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== 兴趣爱好 ========== -->
+<section id="hobbies" class="py-12 md:py-16 scroll-mt-20">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="flex items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 text-cyan-400 text-[11px] font-semibold tracking-widest uppercase mb-2">
+                    <i data-lucide="heart" class="w-3.5 h-3.5"></i> HOBBIES
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">兴趣爱好</h2>
+            </div>
+            <div class="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-cyan-400/60 via-white/10 to-transparent"></div>
+        </div>
+
+        <div class="glass p-5 md:p-7">
+            <ul class="flex flex-wrap gap-2.5 md:gap-3">
+                <li class="badge"><i data-lucide="dribbble"   class="w-3.5 h-3.5"></i>篮球</li>
+                <li class="badge"><i data-lucide="music"      class="w-3.5 h-3.5"></i>音乐</li>
+                <li class="badge"><i data-lucide="languages"  class="w-3.5 h-3.5"></i>英语</li>
+                <li class="badge"><i data-lucide="newspaper"  class="w-3.5 h-3.5"></i>阅读科技资讯</li>
+                <li class="badge"><i data-lucide="image"     class="w-3.5 h-3.5"></i>AI 绘画与创意</li>
+                <li class="badge"><i data-lucide="users"     class="w-3.5 h-3.5"></i>开源社区交流</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 校园经历（含 Sing / English） ========== -->
+<section id="experience" class="py-12 md:py-16 scroll-mt-20">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="flex items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 text-cyan-400 text-[11px] font-semibold tracking-widest uppercase mb-2">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> EXPERIENCE
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">校园经历</h2>
+                <p class="mt-2 text-slate-400 text-sm">高中阶段做过的一些事，每一张都是一段回忆</p>
+            </div>
+            <div class="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-cyan-400/60 via-white/10 to-transparent"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+
+            <!-- 经历 1：校园歌手大赛（Sing） -->
+            <article class="glass glass-hover p-5 md:p-6 relative overflow-hidden cursor-pointer exp-card group"
+                     data-exp="sing" role="button" tabindex="0"
+                     aria-label="查看 校园歌手大赛 详情">
+                <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full
+                            bg-gradient-to-br from-fuchsia-500/20 to-cyan-500/10 blur-2xl pointer-events-none"></div>
+                <div class="relative">
+                    <div class="flex items-start justify-between gap-3 mb-3.5">
+                        <div class="w-11 h-11 rounded-xl grid place-items-center shrink-0
+                                    bg-gradient-to-br from-fuchsia-500/25 to-cyan-500/20 border border-white/10 text-fuchsia-300">
+                            <i data-lucide="mic-vocal" class="w-5 h-5"></i>
+                        </div>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase
+                                     bg-fuchsia-500/15 border border-fuchsia-500/30 text-fuchsia-300">
+                            <i data-lucide="music-2" class="w-3 h-3"></i>Sing
+                        </span>
+                    </div>
+                    <h3 class="text-white font-bold text-base md:text-lg leading-snug mb-2">校园歌手大赛</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        连续两届参赛，均斩获<span class="text-fuchsia-300 font-semibold">二等奖</span>。
+                        从选曲、彩排到登台，每一次都把胆量和台风磨得更稳。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge"><i data-lucide="trophy" class="w-3 h-3"></i>二等奖 × 2</span>
+                        <span class="badge"><i data-lucide="mic" class="w-3 h-3"></i>独唱</span>
+                        <span class="badge"><i data-lucide="star" class="w-3 h-3"></i>台风稳定</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 经历 2：英语国际节（English） -->
+            <article class="glass glass-hover p-5 md:p-6 relative overflow-hidden cursor-pointer exp-card group"
+                     data-exp="english" role="button" tabindex="0"
+                     aria-label="查看 英语国际节 详情">
+                <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full
+                            bg-gradient-to-br from-indigo-500/20 to-cyan-500/10 blur-2xl pointer-events-none"></div>
+                <div class="relative">
+                    <div class="flex items-start justify-between gap-3 mb-3.5">
+                        <div class="w-11 h-11 rounded-xl grid place-items-center shrink-0
+                                    bg-gradient-to-br from-indigo-500/25 to-cyan-500/20 border border-white/10 text-indigo-300">
+                            <i data-lucide="languages" class="w-5 h-5"></i>
+                        </div>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase
+                                     bg-indigo-500/15 border border-indigo-500/30 text-indigo-300">
+                            <i data-lucide="globe" class="w-3 h-3"></i>English
+                        </span>
+                    </div>
+                    <h3 class="text-white font-bold text-base md:text-lg leading-snug mb-2">英语国际节 · 节目策划与主演</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        联合策划并<span class="text-indigo-300 font-semibold">主演英语歌唱节目</span>，
+                        从剧本、流程到现场表演全流程参与，把语言学习搬上了舞台。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge"><i data-lucide="clapperboard" class="w-3 h-3"></i>节目策划</span>
+                        <span class="badge"><i data-lucide="user-round" class="w-3 h-3"></i>主演</span>
+                        <span class="badge"><i data-lucide="message-circle" class="w-3 h-3"></i>英语口语</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 经历 3：篮球 -->
+            <article class="glass glass-hover p-5 md:p-6 relative overflow-hidden cursor-pointer exp-card group"
+                     data-exp="basketball" role="button" tabindex="0"
+                     aria-label="查看 班级得分后卫 详情">
+                <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full
+                            bg-gradient-to-br from-orange-500/20 to-amber-500/10 blur-2xl pointer-events-none"></div>
+                <div class="relative">
+                    <div class="flex items-start justify-between gap-3 mb-3.5">
+                        <div class="w-11 h-11 rounded-xl grid place-items-center shrink-0
+                                    bg-gradient-to-br from-orange-500/25 to-amber-500/20 border border-white/10 text-orange-300">
+                            <i data-lucide="dribbble" class="w-5 h-5"></i>
+                        </div>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase
+                                     bg-orange-500/15 border border-orange-500/30 text-orange-300">
+                            <i data-lucide="basketball" class="w-3 h-3"></i>Sport
+                        </span>
+                    </div>
+                    <h3 class="text-white font-bold text-base md:text-lg leading-snug mb-2">班级得分后卫</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        担任班级篮球队<span class="text-orange-300 font-semibold">得分后卫</span>，
+                        负责外线投射与快攻推进，和队友一起把每场比赛都打成集体记忆。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge"><i data-lucide="target" class="w-3 h-3"></i>中远投</span>
+                        <span class="badge"><i data-lucide="zap" class="w-3 h-3"></i>快攻</span>
+                        <span class="badge"><i data-lucide="users" class="w-3 h-3"></i>团队协作</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 经历 4：志愿服务 -->
+            <article class="glass glass-hover p-5 md:p-6 relative overflow-hidden cursor-pointer exp-card group"
+                     data-exp="volunteer" role="button" tabindex="0"
+                     aria-label="查看 志愿服务 详情">
+                <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full
+                            bg-gradient-to-br from-emerald-500/20 to-cyan-500/10 blur-2xl pointer-events-none"></div>
+                <div class="relative">
+                    <div class="flex items-start justify-between gap-3 mb-3.5">
+                        <div class="w-11 h-11 rounded-xl grid place-items-center shrink-0
+                                    bg-gradient-to-br from-emerald-500/25 to-cyan-500/20 border border-white/10 text-emerald-300">
+                            <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                        </div>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase
+                                     bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">
+                            <i data-lucide="hand-heart" class="w-3 h-3"></i>Volunteer
+                        </span>
+                    </div>
+                    <h3 class="text-white font-bold text-base md:text-lg leading-snug mb-2">志愿服务</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        累计<span class="text-emerald-300 font-semibold">24 小时</span>志愿服务，
+                        参与校园与社区活动支援，把"动手做"和"为别人"拧成同一条线。
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge"><i data-lucide="clock" class="w-3 h-3"></i>24 小时</span>
+                        <span class="badge"><i data-lucide="users" class="w-3 h-3"></i>活动支援</span>
+                        <span class="badge"><i data-lucide="smile" class="w-3 h-3"></i>主动服务</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== 联系方式 ========== -->
+<section id="contact" class="py-12 md:py-16 scroll-mt-20">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8">
+        <div class="flex items-end justify-between mb-8 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 text-cyan-400 text-[11px] font-semibold tracking-widest uppercase mb-2">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i> CONTACT
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white">联系方式</h2>
+            </div>
+            <div class="hidden md:block h-px flex-1 ml-6 bg-gradient-to-r from-cyan-400/60 via-white/10 to-transparent"></div>
+        </div>
+
+        <div class="glass p-5 md:p-7">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+
+                <!-- 左：邮箱 + 电话 -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg grid place-items-center shrink-0
+                                    bg-cyan-500/15 border border-cyan-500/25 text-cyan-300">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] text-cyan-400 font-semibold tracking-widest uppercase">邮箱</div>
+                            <a href="mailto:2273705231@qq.com"
+                               class="text-white font-bold text-sm md:text-base hover:text-cyan-300 transition-colors break-all">
+                                2273705231@qq.com
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg grid place-items-center shrink-0
+                                    bg-emerald-500/15 border border-emerald-500/25 text-emerald-300">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <div class="text-[11px] text-cyan-400 font-semibold tracking-widest uppercase">电话</div>
+                            <a href="tel:13822729988"
+                               class="text-white font-bold text-sm md:text-base hover:text-cyan-300 transition-colors tabular-nums">
+                                138 2272 9988
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右：复制邮箱 + GitHub -->
+                <div class="flex flex-wrap gap-2.5">
+                    <button id="copyEmailBtn" class="btn-glow" type="button">
+                        <i data-lucide="copy" class="w-4 h-4"></i>复制邮箱
+                    </button>
+                    <a href="https://github.com/lu-huawei-127" target="_blank" rel="noopener" class="btn-ghost">
+                        <i data-lucide="github" class="w-4 h-4"></i>GitHub 主页
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 页脚 ========== -->
+<footer class="border-t border-white/5 bg-slate-950/50 mt-8">
+    <div class="max-w-[1024px] mx-auto px-5 md:px-8 py-8 md:py-10
+                flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
+        <div class="flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg grid place-items-center
+                         bg-gradient-to-br from-cyan-400 to-indigo-500 text-slate-950 font-black text-xs">L</span>
+            <div>
+                <div class="text-white font-semibold text-sm">陆华为<span class="text-cyan-400">.</span></div>
+                <div class="text-[11px] text-slate-500">© 2026 · 个人主页</div>
+            </div>
+        </div>
+        <div class="text-[13px] text-slate-400">
+            用 <span class="text-cyan-400">♥</span> 构建 · Powered by Tailwind + Lucide
+        </div>
+    </div>
+</footer>
+
+<!-- ========== 经历详情 Modal ========== -->
+<div id="expModal" class="exp-modal" role="dialog" aria-modal="true"
+     aria-labelledby="expTitle" aria-hidden="true">
+    <div class="exp-modal-backdrop" data-close></div>
+    <div class="exp-modal-card glass">
+        <button type="button" class="exp-modal-close" data-close aria-label="关闭">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <div class="exp-modal-img">
+            <div id="expImgWrap" class="absolute inset-0 w-full h-full overflow-hidden"></div>
+            <span id="expBadge" class="exp-modal-badge"></span>
+        </div>
+        <div class="exp-modal-body">
+            <h3 id="expTitle" class="text-white font-extrabold text-xl md:text-2xl mb-2"></h3>
+            <p id="expDesc" class="text-slate-300 text-sm md:text-base leading-7 mb-4"></p>
+            <div id="expFacts" class="space-y-2 mb-4"></div>
+            <div id="expTags" class="flex flex-wrap gap-2"></div>
+        </div>
+    </div>
 </div>
 
-<div id="toast" class="toast">✅ 邮箱已复制到剪贴板</div>
+<!-- ========== 屏幕底部 Toast ========== -->
+<div id="toast" class="toast" role="status" aria-live="polite">
+    <div class="flex items-center gap-2.5">
+        <span class="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 grid place-items-center">
+            <i data-lucide="check" class="w-3 h-3"></i>
+        </span>
+        <span id="toastText">✅ 邮箱已复制到剪贴板</span>
+    </div>
+</div>
 
 <script>
-    lucide.createIcons();
+/* ======================================================
+   Lucide 图标渲染
+   ====================================================== */
+if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+}
 
-    const copyBtn = document.getElementById('copyEmailBtn');
-    const toast = document.getElementById('toast');
+/* ======================================================
+   交互：复制邮箱 + Toast + 移动端菜单
+   ====================================================== */
+(function () {
+    'use strict';
 
-    copyBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const email = '2273705231@qq.com';
-        navigator.clipboard.writeText(email).then(() => {
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
-        }).catch(() => {
-            const input = document.createElement('input');
-            input.value = email;
-            document.body.appendChild(input);
-            input.select();
-            document.execCommand('copy');
-            document.body.removeChild(input);
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
+    // ---------- 复制邮箱 ----------
+    const copyBtn   = document.getElementById('copyEmailBtn');
+    const toast     = document.getElementById('toast');
+    const toastText = document.getElementById('toastText');
+    const EMAIL     = '2273705231@qq.com';
+    let toastTimer  = null;
+
+    function showToast(msg) {
+        toastText.textContent = msg || '✅ 邮箱已复制到剪贴板';
+        toast.classList.add('show');
+        if (toastTimer) clearTimeout(toastTimer);
+        // 2.5s 后自动消失
+        toastTimer = setTimeout(() => {
+            toast.classList.remove('show');
+            toastTimer = null;
+        }, 2500);
+    }
+
+    function fallbackCopy(text, cb) {
+        try {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.cssText = 'position:absolute;left:-9999px;top:-9999px;opacity:0';
+            document.body.appendChild(ta);
+            ta.select();
+            const ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            cb(ok);
+        } catch (e) { cb(false); }
+    }
+
+    function copyEmail() {
+        const done = (ok) => {
+            showToast(ok ? '✅ 邮箱已复制到剪贴板' : '复制失败，请手动选择');
+        };
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            navigator.clipboard.writeText(EMAIL).then(
+                () => done(true),
+                () => fallbackCopy(EMAIL, done)
+            );
+        } else {
+            fallbackCopy(EMAIL, done);
+        }
+    }
+
+    if (copyBtn) copyBtn.addEventListener('click', copyEmail, { passive: true });
+
+    // ---------- 移动端菜单 ----------
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        }, { passive: true });
+        mobileMenu.querySelectorAll('a').forEach((a) => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            }, { passive: true });
+        });
+    }
+
+    // ---------- 导航栏滚动阴影 ----------
+    const navbar = document.querySelector('nav');
+    let ticking = false, lastScrolled = false;
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const shouldShadow = window.scrollY > 8;
+                if (shouldShadow !== lastScrolled) {
+                    navbar.classList.toggle('shadow-[0_8px_30px_-12px_rgba(34,211,238,0.25)]', shouldShadow);
+                    navbar.classList.toggle('border-cyan-400/10', shouldShadow);
+                    lastScrolled = shouldShadow;
+                }
+                ticking = false;
+            });
+        }, { passive: true });
+    }
+})();
+
+/* ======================================================
+   经历详情 Modal 交互
+   ====================================================== */
+(function () {
+    'use strict';
+
+    const EXPERIENCES = {
+        sing: {
+            media: '<img src="sing.jpg" alt="校园歌手大赛" class="absolute inset-0 w-full h-full object-cover">',
+            badge: { text: 'Sing', icon: 'music-2',
+                     cls: 'bg-fuchsia-500/40 border-fuchsia-400/50 text-fuchsia-100' },
+            title: '校园歌手大赛',
+            desc: '连续两届校园歌手大赛，从初赛、复赛到决赛一路闯关，最终两届均斩获二等奖。选曲、彩排、登台，每一次都是对自己胆量和台风的磨练——把高中最难忘的舞台记忆留在了聚光灯下。',
+            facts: [
+                { label: '奖项', value: '二等奖 × 2 届' },
+                { label: '角色', value: '独唱参赛者' },
+                { label: '收获', value: '舞台经验 / 心理素质 / 临场应变' }
+            ],
+            tags: [
+                { icon: 'trophy',  text: '二等奖 × 2' },
+                { icon: 'mic',      text: '独唱' },
+                { icon: 'star',     text: '台风稳定' }
+            ]
+        },
+        english: {
+            media: '<img src="english.jpg" alt="英语国际节" class="absolute inset-0 w-full h-full object-cover">',
+            badge: { text: 'English', icon: 'globe',
+                     cls: 'bg-indigo-500/40 border-indigo-400/50 text-indigo-100' },
+            title: '英语国际节 · 节目策划与主演',
+            desc: '联合策划并主演英语歌唱节目，从剧本撰写、流程设计到现场表演全流程参与。把英语学习和舞台艺术结合，给同学们带来一场沉浸式语言体验，也让英语从课本走向真实表达。',
+            facts: [
+                { label: '节目类型', value: '英语歌唱节目' },
+                { label: '角色', value: '联合策划 + 主演' },
+                { label: '收获', value: '策划组织 / 英语口语 / 跨学科表达' }
+            ],
+            tags: [
+                { icon: 'clapperboard',  text: '节目策划' },
+                { icon: 'user-round',   text: '主演' },
+                { icon: 'message-circle', text: '英语口语' }
+            ]
+        },
+        basketball: {
+            media: `<div class="absolute inset-0 w-full h-full grid place-items-center overflow-hidden" style="background: linear-gradient(135deg, #1a1206 0%, #020617 100%);">
+                        <div class="absolute inset-0" style="background: radial-gradient(circle at 70% 50%, rgba(249,115,22,0.40), transparent 60%);"></div>
+                        <div class="absolute inset-0" style="background: radial-gradient(circle at 20% 30%, rgba(251,191,36,0.25), transparent 50%);"></div>
+                        <svg viewBox="0 0 200 100" class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 opacity-30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                            <path d="M0,100 Q100,0 200,100" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+                            <path d="M40,100 Q100,40 160,100" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+                            <line x1="100" y1="100" x2="100" y2="55" stroke="#fbbf24" stroke-width="1.5"/>
+                        </svg>
+                        <div class="relative z-10 text-center">
+                            <div class="text-7xl font-extrabold bg-gradient-to-br from-orange-300 to-amber-500 bg-clip-text text-transparent" style="line-height: 1; filter: drop-shadow(0 0 25px rgba(249,115,22,0.5));">3</div>
+                            <div class="text-xs font-bold tracking-[0.3em] text-orange-300/80 mt-2">POINTS</div>
+                        </div>
+                    </div>`,
+            badge: { text: 'Sport', icon: 'basketball',
+                     cls: 'bg-orange-500/40 border-orange-400/50 text-orange-100' },
+            title: '班级得分后卫',
+            desc: '班级篮球队得分后卫，负责外线投射与快攻推进。和队友一起经历了无数场激烈对抗，把每场比赛都打成集体记忆——篮球教会我的，是在压力下找到节奏，在协作里放下自己。',
+            facts: [
+                { label: '位置', value: '得分后卫（SG）' },
+                { label: '招牌', value: '中远投 / 跑位 / 快攻' },
+                { label: '收获', value: '团队协作 / 抗压 / 节奏感' }
+            ],
+            tags: [
+                { icon: 'target', text: '中远投' },
+                { icon: 'zap',    text: '快攻' },
+                { icon: 'users',  text: '团队协作' }
+            ]
+        },
+        volunteer: {
+            media: `<div class="absolute inset-0 w-full h-full grid place-items-center overflow-hidden" style="background: linear-gradient(135deg, #0b1729 0%, #020617 100%);">
+                        <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 50%, rgba(16,185,129,0.40), transparent 60%);"></div>
+                        <div class="absolute inset-0" style="background: radial-gradient(circle at 80% 30%, rgba(34,211,238,0.25), transparent 50%);"></div>
+                        <i data-lucide="hand-heart" class="w-20 h-20 text-emerald-400 relative z-10" style="filter: drop-shadow(0 0 20px rgba(16,185,129,0.5));"></i>
+                    </div>`,
+            badge: { text: 'Volunteer', icon: 'hand-heart',
+                     cls: 'bg-emerald-500/40 border-emerald-400/50 text-emerald-100' },
+            title: '志愿服务',
+            desc: '累计 24 小时志愿服务，参与校园开放日支援、社区敬老服务等活动。把"动手做"和"为别人"拧成同一条线——服务他人的过程，也是把自己磨得更稳、更细、更耐心的过程。',
+            facts: [
+                { label: '累计', value: '24 小时' },
+                { label: '类型', value: '校园开放日 / 社区敬老' },
+                { label: '收获', value: '责任 / 共情 / 行动力' }
+            ],
+            tags: [
+                { icon: 'clock', text: '24 小时' },
+                { icon: 'users', text: '活动支援' },
+                { icon: 'smile', text: '主动服务' }
+            ]
+        }
+    };
+
+    const modal    = document.getElementById('expModal');
+    if (!modal) return;
+    const imgWrap  = document.getElementById('expImgWrap');
+    const badgeEl  = document.getElementById('expBadge');
+    const titleEl  = document.getElementById('expTitle');
+    const descEl   = document.getElementById('expDesc');
+    const factsEl  = document.getElementById('expFacts');
+    const tagsEl   = document.getElementById('expTags');
+
+    function openExp(key) {
+        const d = EXPERIENCES[key];
+        if (!d) return;
+        imgWrap.innerHTML = d.media;
+        badgeEl.className = 'exp-modal-badge ' + d.badge.cls;
+        badgeEl.innerHTML = '<i data-lucide="' + d.badge.icon + '" class="w-3 h-3"></i>' + d.badge.text;
+        titleEl.textContent = d.title;
+        descEl.textContent = d.desc;
+        factsEl.innerHTML = d.facts.map(function (f) {
+            return '<div class="exp-fact"><span class="label">' + f.label +
+                   '</span><span class="value">' + f.value + '</span></div>';
+        }).join('');
+        tagsEl.innerHTML = d.tags.map(function (t) {
+            return '<span class="badge"><i data-lucide="' + t.icon +
+                   '" class="w-3 h-3"></i>' + t.text + '</span>';
+        }).join('');
+
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        // 异步渲染 Lucide 图标，避免阻塞 Modal 显示动画
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            requestAnimationFrame(function () {
+                window.lucide.createIcons();
+            });
+        }
+    }
+
+    function closeExp() {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    // 点击卡片或键盘 Enter/Space 打开
+    document.querySelectorAll('.exp-card').forEach(function (card) {
+        // 注入「点击查看详情」提示
+        const inner = card.querySelector('.relative');
+        if (inner && !card.querySelector('.exp-hint')) {
+            const hint = document.createElement('div');
+            hint.className = 'exp-hint';
+            hint.innerHTML = '<span>点击查看详情</span>' +
+                             '<i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>';
+            inner.appendChild(hint);
+        }
+        const handler = function () {
+            const key = card.getAttribute('data-exp');
+            if (key) openExp(key);
+        };
+        card.addEventListener('click', handler, { passive: true });
+        card.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handler();
+            }
         });
     });
+
+    // 重新渲染注入的 Lucide 图标
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+    }
+
+    // 关闭：关闭按钮 / 点击 backdrop / ESC
+    modal.querySelectorAll('[data-close]').forEach(function (el) {
+        el.addEventListener('click', closeExp, { passive: true });
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) closeExp();
+    }, { passive: true });
+})();
 </script>
 </body>
 </html>
