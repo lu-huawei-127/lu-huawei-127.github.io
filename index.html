@@ -140,4 +140,196 @@
             font-weight: 500;
             opacity: 0;
             transition: all 0.4s ease;
-            z-i
+            z-index: 999;
+            pointer-events: none;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+
+<div class="container">
+
+    <!-- 头部 -->
+    <header class="glass mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
+        <div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white">陆华为</h1>
+            <p class="text-cyan-400 text-lg font-medium mt-1">准大一新生 · AI 应用实践者</p>
+            <p class="text-slate-400 text-sm mt-1">广东江门南粤学院 · 计算机科学与技术（2026级）</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex flex-wrap gap-3">
+            <span class="flex items-center gap-1 text-slate-300 text-sm"><i data-lucide="mail" class="w-4 h-4"></i> <span class="text-slate-400">2273705231@qq.com</span></span>
+            <span class="flex items-center gap-1 text-slate-300 text-sm"><i data-lucide="phone" class="w-4 h-4"></i> <span class="text-slate-400">13822729988</span></span>
+        </div>
+    </header>
+
+    <!-- 关于我 -->
+    <section class="glass mb-6">
+        <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="user" class="w-5 h-5 text-cyan-400"></i>
+            <h2 class="text-xl font-bold text-white">关于我</h2>
+        </div>
+        <p class="text-slate-300 leading-relaxed">
+            准大一新生，对人工智能充满热情。通过达摩院与阿里云认证体系系统学习了 AI 训练、智能体构建及 AI 编码实践。具备良好的自驱力与快速学习能力，期望在大学期间深入探索 AI 技术与工程应用。
+        </p>
+    </section>
+
+    <!-- 技能 -->
+    <section class="glass mb-6">
+        <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="cpu" class="w-5 h-5 text-cyan-400"></i>
+            <h2 class="text-xl font-bold text-white">专业技能</h2>
+        </div>
+        <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Python（基础）</span>
+            <span class="skill-tag">AI 工具（DeepSeek / Kimi / CodeX）</span>
+            <span class="skill-tag">阿里云百炼平台</span>
+            <span class="skill-tag">通义灵码</span>
+            <span class="skill-tag">达摩院智能客服</span>
+            <span class="skill-tag">HTML / CSS（入门）</span>
+        </div>
+    </section>
+
+    <!-- 证书与认证 -->
+    <section class="glass mb-6">
+        <div class="flex items-center gap-2 mb-4">
+            <i data-lucide="award" class="w-5 h-5 text-cyan-400"></i>
+            <h2 class="text-xl font-bold text-white">认证与证书</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- 高级训练师 -->
+            <div class="bg-slate-800/40 rounded-xl p-4 border border-white/5 hover:border-cyan-400/30 transition">
+                <div class="flex justify-between items-start">
+                    <span class="badge">高级</span>
+                    <span class="text-xs text-slate-500">2026.07 – 2027.07</span>
+                </div>
+                <h3 class="text-white font-semibold text-base mt-2">人工智能训练师（高级）</h3>
+                <p class="text-slate-400 text-sm">达摩院-机器智能技术事业部</p>
+                <p class="text-slate-500 text-xs mt-1">证书号：AIT260719212528000107</p>
+                <img src="cert-advanced.jpg" alt="高级训练师证书" class="cert-img" onclick="window.open(this.src)" />
+            </div>
+            <!-- 初级训练师 -->
+            <div class="bg-slate-800/40 rounded-xl p-4 border border-white/5 hover:border-cyan-400/30 transition">
+                <div class="flex justify-between items-start">
+                    <span class="badge">初级</span>
+                    <span class="text-xs text-slate-500">2026.07 – 2027.07</span>
+                </div>
+                <h3 class="text-white font-semibold text-base mt-2">人工智能训练师（初级）</h3>
+                <p class="text-slate-400 text-sm">达摩院-机器智能技术事业部</p>
+                <p class="text-slate-500 text-xs mt-1">证书号：AIT260730114325000123</p>
+                <img src="cert-junior.jpg" alt="初级训练师证书" class="cert-img" onclick="window.open(this.src)" />
+            </div>
+            <!-- 百炼智能体 -->
+            <div class="bg-slate-800/40 rounded-xl p-4 border border-white/5 hover:border-cyan-400/30 transition">
+                <div class="flex justify-between items-start">
+                    <span class="badge">专项</span>
+                    <span class="text-xs text-slate-500">2026.07 – 2028.07</span>
+                </div>
+                <h3 class="text-white font-semibold text-base mt-2">基于百炼平台构建智能体应用</h3>
+                <p class="text-slate-400 text-sm">阿里云 Apsara Clouder</p>
+                <p class="text-slate-500 text-xs mt-1">证书号：CLDM02260702735271</p>
+                <img src="cert-bailian.png" alt="百炼证书" class="cert-img" onclick="window.open(this.src)" />
+            </div>
+            <!-- 通义灵码 -->
+            <div class="bg-slate-800/40 rounded-xl p-4 border border-white/5 hover:border-cyan-400/30 transition">
+                <div class="flex justify-between items-start">
+                    <span class="badge">专项</span>
+                    <span class="text-xs text-slate-500">2026.07 – 2028.07</span>
+                </div>
+                <h3 class="text-white font-semibold text-base mt-2">基于通义灵码实现高效AI编码实践</h3>
+                <p class="text-slate-400 text-sm">阿里云 Apsara Clouder</p>
+                <p class="text-slate-500 text-xs mt-1">证书号：CLDM07260702734815</p>
+                <img src="cert-lingma.png" alt="通义灵码证书" class="cert-img" onclick="window.open(this.src)" />
+            </div>
+        </div>
+    </section>
+
+    <!-- 实践经历 -->
+    <section class="glass mb-6">
+        <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="briefcase" class="w-5 h-5 text-cyan-400"></i>
+            <h2 class="text-xl font-bold text-white">实践经历</h2>
+        </div>
+        <ul class="space-y-3 text-slate-300">
+            <li class="flex gap-3">
+                <span class="text-cyan-400">●</span>
+                <div><span class="font-semibold text-white">高中阶段自学AI基础</span> – 利用开源资料系统学习机器学习基本概念，并通过达摩院认证体系完成初级与高级考核。</div>
+            </li>
+            <li class="flex gap-3">
+                <span class="text-cyan-400">●</span>
+                <div><span class="font-semibold text-white">AI工具链探索</span> – 熟练使用 DeepSeek、Kimi、CodeX 等工具辅助学习与编程，并参与社区内部分享。</div>
+            </li>
+            <li class="flex gap-3">
+                <span class="text-cyan-400">●</span>
+                <div><span class="font-semibold text-white">个人作品部署</span> – 独立将个人简历网页部署至 Netlify，具备基础的 web 发布能力。</div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- 兴趣爱好 -->
+    <section class="glass mb-6">
+        <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="heart" class="w-5 h-5 text-cyan-400"></i>
+            <h2 class="text-xl font-bold text-white">兴趣爱好</h2>
+        </div>
+        <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">阅读科技资讯</span>
+            <span class="skill-tag">AI 绘画与创意</span>
+            <span class="skill-tag">开源社区交流</span>
+            <span class="skill-tag">羽毛球</span>
+            <span class="skill-tag">电子音乐</span>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="glass flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="flex items-center gap-4 text-slate-400 text-sm">
+            <span class="flex items-center gap-1"><i data-lucide="mail" class="w-4 h-4"></i> 2273705231@qq.com</span>
+            <span class="flex items-center gap-1"><i data-lucide="phone" class="w-4 h-4"></i> 13822729988</span>
+        </div>
+        <div class="flex gap-3">
+            <button class="btn-glow" id="copyEmailBtn">复制邮箱</button>
+            <a href="https://github.com/lu-huawei-127" target="_blank" class="btn-glow" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.1); color:#cbd5e1;">GitHub</a>
+        </div>
+    </footer>
+
+</div>
+
+<div id="toast" class="toast">✅ 邮箱已复制到剪贴板</div>
+
+<script>
+    lucide.createIcons();
+
+    const copyBtn = document.getElementById('copyEmailBtn');
+    const toast = document.getElementById('toast');
+
+    copyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const email = '2273705231@qq.com';
+        navigator.clipboard.writeText(email).then(() => {
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }).catch(() => {
+            const input = document.createElement('input');
+            input.value = email;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        });
+    });
+</script>
+</body>
+</html>
