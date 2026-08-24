@@ -1,121 +1,143 @@
-<!--stop reading my html, I know its spaghetti ¯\_( ͡❛ ͜ʖ ͡❛)_/¯ -->
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133286804-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>陆华为 · 个人简历</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background: #030712;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
         }
-
-        gtag('js', new Date());
-        gtag('config', 'UA-133286804-1');
-    </script>
-    <meta charset="UTF-8">
-    <title>Lu Huawei</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="res/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="res/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="res/favicon/favicon-16x16.png">
-    <link rel="manifest" href="res/favicon/site.webmanifest">
-    <!-- Open Graph data -->
-    <meta property="og:title" content="Lu Huawei"/>
-    <meta property="og:description" content="Hi I'm Lu Huawei, this is my personal website, check it out!"/>
-    <meta property="og:url" content="lu-huawei-127.github.io"/>
-    <meta property="og:image" content="res/preview.png"/>
-    <meta name="image" property="og:image" content="res/preview.png">
-    <link rel="stylesheet" href="main.css">
-    <!-- Typekit -->
-    <script src="https://use.typekit.net/cxa4izu.js"></script>
-    <script>try {
-        Typekit.load({async: true});
-    } catch (e) {
-    }
-    </script>
-</head>
-<div id="topographic">
-<body>
-<div class="load"></div>
-
-
-<section class="intro" id="intro">
-    <div class="container vertical-center">
-        <h1><span>I'</span><span>m</span></h1>
-        <h1><span>L</span><span>u</span></h1>
-        <h1>
-            <span>S</span><span>t</span><span>u</span><span>d</span><span>e</span><span>n</span><span>t</span>
-        </h1>
-        <h1>
-            <span>&</span><span>C</span><span>r</span><span>e</span><span>a</span><span>t</span><span>o</span><span>r</span>
-        </h1>
-    </div>
-</section>
-
-<section class="about" id="about">
-    <header>
-        <h2 class="header" id="header-about">About</h2>
-    </header>
-    <div class="container">
-        <div class="content vertical-center">
-            <h2>Technology Excites Me</h2>
-            <p>
-                &#128075; Hey! I'm a student & developer from 中山<br>
-                &#128205; Currently learning and building cool stuff<br>
-                &#127979; Passionate about coding and design<br>
-            </p >
-            <div style="height:18px"></div>
-            <a  style="float:left" href="https://github.com/lu-huawei-127" target="_blank"><p class="link">GitHub</p ></a >
-            <p style="float:left; width:20px"></p >
-            <a style="float:left" href="https://www.linkedin.com/in/lu-huawei-127" target="_blank"><p class="link">LinkedIn</p ></a >
-            <p style="float:left; width:20px"></p >
-            <a style="float:left" href="res/lu-huawei-resume.pdf" target="_blank"><p class="link">Resume</p ></a >
-            <p style="float:left; width:20px"></p >
-            <a style="float:left" href="https://zipcall.io" target="_blank"><p class="link">Zipcall</p ></a >
-        </div>
-        < img class="hover" src="res/yeehaw.png">
-    </div>
-</section>
-
-
-<section class="projects" id="projects">
-    <header>
-        <h2 class="header" id="header-projects">Projects</h2>
-    </header>
-    <div class="container">
-        <ul class="filter">
-            <h2 style="color:#777777;">Projects</h2>
-            <li class="active" id="filter-all" onclick="loadProjects('all')">All</li>
-            <li id="filter-datascience" onclick="loadProjects('datascience')">Backend & Data Science</li>
-            <li id="filter-frontend" onclick="loadProjects('frontend')">Frontend</li>
-            <li id="filter-game" onclick="loadProjects('game')">Game</li>
-        </ul>
-        <div class="js-project--container">
-        </div>
-        <a class="load-more" onclick="loadProjects('all-more')">Load More</a >
-    </div>
-</section>
-
-
-<section class="subscribe" id="subscribe">
-    <div class="container">
-        <h2>See more things like this from me</h2>
-        <br>
-        <br>
-        <h4><span style="opacity: 0.66;font-size: 1.7rem">To see all my work and experiences, check out my</span>
-            <a style="opacity:1;font-size: 1.7rem;color: white" href="https://github.com/lu-huawei-127" target="_blank">GitHub</a >,
-            <a href="https://www.linkedin.com/in/lu-huawei-127" style="color:white;font-size: 1.7rem;" target="_blank">LinkedIn</a >,
-            or <a style="color:white;font-size: 1.7rem;" href="res/lu-huawei-resume.pdf" target="_blank">Resume</a >
-        </h4>
-    </div>
-</section>
-
-
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="js/projects.js"></script>
-<script src="js/main.js"></script>
-<script src="js/delay.js"></script>
-</body>
-</div>
-</html>
+        .glow-1 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%);
+            filter: blur(140px);
+            top: -100px;
+            left: -100px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .glow-2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+            filter: blur(140px);
+            bottom: -100px;
+            right: -100px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+        .glass {
+            background: rgba(15,23,42,0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 1.5rem;
+            padding: 1.5rem 2rem;
+            transition: all 0.3s ease;
+        }
+        .glass:hover {
+            border-color: rgba(34,211,238,0.25);
+            box-shadow: 0 0 30px rgba(34,211,238,0.05);
+            transform: translateY(-2px);
+        }
+        .badge {
+            background: rgba(34,211,238,0.1);
+            border: 1px solid rgba(34,211,238,0.2);
+            color: #67e8f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .btn-glow {
+            background: rgba(34,211,238,0.08);
+            border: 1px solid rgba(34,211,238,0.2);
+            color: #67e8f9;
+            padding: 0.6rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-glow:hover {
+            background: rgba(34,211,238,0.2);
+            box-shadow: 0 0 30px rgba(34,211,238,0.2);
+            transform: translateY(-2px);
+        }
+        .skill-tag {
+            background: rgba(34,211,238,0.06);
+            border: 1px solid rgba(34,211,238,0.12);
+            color: #94a3b8;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .cert-img {
+            width: 100%;
+            max-height: 160px;
+            object-fit: contain;
+            border-radius: 0.75rem;
+            margin-top: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .cert-img:hover {
+            transform: scale(1.02);
+            border-color: rgba(34,211,238,0.3);
+        }
+        @media (max-width: 640px) {
+            .glass { padding: 1.2rem 1.2rem; }
+            .container { padding: 0 0.5rem; }
+            body { padding: 0.8rem; }
+            .cert-img { max-height: 120px; }
+        }
+        @media print {
+            .glow-1, .glow-2 { display: none; }
+            body { background: #fff; color: #000; }
+            .glass { background: #fff !important; backdrop-filter: none !important; border-color: #ccc; }
+            .badge { background: #eee; color: #000; border-color: #999; }
+            .skill-tag { background: #f0f0f0; color: #333; border-color: #ddd; }
+            .btn-glow { display: none; }
+            .cert-img { border-color: #ccc; max-height: 100px; }
+        }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #e2e8f0;
+            padding: 0.8rem 2rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-i
