@@ -7,17 +7,16 @@
     <meta name="description" content="陆华为 · 个人主页">
     <title>陆华为 · 个人主页</title>
 
-    <!-- ========== 字体：Plus Jakarta Sans（英文/数字）+ 中文系统无衬线 ========== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    <!-- ========== 字体：去掉 Google Fonts（国内访问极慢），改用系统字体栈 ========== -->
+    <!-- PingFang SC (iOS/macOS) / Microsoft YaHei (Win) / system-ui 全平台覆盖，视觉差异极小 -->
+    <link rel="dns-prefetch" href="//cdn.staticfile.net">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
     <!-- ========== Tailwind CSS（CDN，defer 不阻塞 HTML 解析） ========== -->
     <script src="https://cdn.tailwindcss.com" defer></script>
 
-    <!-- ========== Lucide 图标库（defer，最后加载） ========== -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+    <!-- ========== Lucide 图标库（换 cdnjs 源，国内比 unpkg 快；defer） ========== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.460.0/lucide.min.js" defer></script>
 
     <script>
         // Tailwind 配置（设置在 tailwind script 加载前也 OK，因为 CDN 版加载完会自动扫 window.tailwind.config）
@@ -25,9 +24,9 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui',
-                               '-apple-system', '"PingFang SC"', '"Hiragino Sans GB"',
-                               '"Microsoft YaHei"', 'sans-serif'],
+                        sans: ['system-ui', '-apple-system', '"PingFang SC"',
+                               '"Hiragino Sans GB"', '"Microsoft YaHei"',
+                               '"Plus Jakarta Sans"', 'ui-sans-serif', 'sans-serif'],
                     },
                     colors: {
                         ink: {
@@ -64,9 +63,9 @@
             /* 不用 smooth：微信内置浏览器对 scroll-behavior:smooth 支持差，会显得"粘" */
         }
         body {
-            font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui,
-                         -apple-system, "PingFang SC", "Hiragino Sans GB",
-                         "Microsoft YaHei", sans-serif;
+            font-family: system-ui, -apple-system, "PingFang SC",
+                         "Hiragino Sans GB", "Microsoft YaHei",
+                         "Plus Jakarta Sans", ui-sans-serif, sans-serif;
             background-color: #030712;
             color: #cbd5e1;
             -webkit-font-smoothing: antialiased;
