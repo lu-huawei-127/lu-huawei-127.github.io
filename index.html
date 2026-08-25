@@ -159,6 +159,46 @@
         }
         .btn-ghost:active { transform: scale(0.98); }
 
+        /* ========== 图片加载骨架 Shimmer（微信弱网下防止空白等待） ========== */
+        .img-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #1e293b;
+        }
+        .img-wrap::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                110deg,
+                rgba(30, 41, 59, 0) 0%,
+                rgba(51, 65, 85, 0.85) 20%,
+                rgba(30, 41, 59, 0) 60%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 1.6s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .img-wrap > img {
+            position: relative;
+            z-index: 1;
+        }
+        .img-wrap > img.loaded + .shimmer-hide,
+        .img-wrap > img:not([src=""]) {
+            /* 图片一旦开始加载，shimmer 在底层被 img 盖住即不可见 */
+        }
+        @keyframes shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        /* 证书图片优化标志（可选的视觉提示） */
+        .cert-img {
+            opacity: 0;
+            transition: opacity .45s ease;
+        }
+        .cert-img.loaded { opacity: 1; }
+
         /* ========== 滚动条美化 ========== */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #030712; }
@@ -272,9 +312,26 @@
         .exp-modal-img {
             position: relative;
             aspect-ratio: 16 / 9;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
             flex-shrink: 0;
+            background: #1e293b;
+            overflow: hidden;
         }
+        /* Modal 图片加载前 Shimmer 骨架 */
+        .exp-modal-img::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                110deg,
+                rgba(30, 41, 59, 0) 0%,
+                rgba(51, 65, 85, 0.9) 20%,
+                rgba(30, 41, 59, 0) 60%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 1.6s ease-in-out infinite;
+            z-index: 0;
+        }
+        .exp-modal-img > * { position: relative; z-index: 1; }
         .exp-modal-badge {
             position: absolute; top: 12px; left: 12px;
             display: inline-flex; align-items: center; gap: 6px;
@@ -552,9 +609,12 @@
             <!-- 证书 1：高级训练师 -->
             <article class="glass glass-hover overflow-hidden">
                 <a href="../证/cert-advanced.jpg" target="_blank" rel="noopener" class="block group">
-                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden">
+                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden img-wrap">
                         <img src="../证/cert-advanced.jpg" alt="人工智能训练师（高级）证书"
-                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                             width="300" height="400"
+                             loading="lazy" decoding="async" fetchpriority="low"
+                             class="cert-img absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             onload="this.classList.add('loaded')">
                     </div>
                 </a>
                 <div class="p-4">
@@ -569,9 +629,12 @@
             <!-- 证书 2：初级训练师 -->
             <article class="glass glass-hover overflow-hidden">
                 <a href="../证/cert-junior.jpg" target="_blank" rel="noopener" class="block group">
-                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden">
+                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden img-wrap">
                         <img src="../证/cert-junior.jpg" alt="人工智能训练师（初级）证书"
-                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                             width="300" height="400"
+                             loading="lazy" decoding="async" fetchpriority="low"
+                             class="cert-img absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             onload="this.classList.add('loaded')">
                     </div>
                 </a>
                 <div class="p-4">
@@ -586,9 +649,12 @@
             <!-- 证书 3：百炼智能体 -->
             <article class="glass glass-hover overflow-hidden">
                 <a href="../证/cert-bailian.png" target="_blank" rel="noopener" class="block group">
-                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden">
+                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden img-wrap">
                         <img src="../证/cert-bailian.png" alt="基于百炼平台构建智能体应用证书"
-                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                             width="300" height="400"
+                             loading="lazy" decoding="async" fetchpriority="low"
+                             class="cert-img absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             onload="this.classList.add('loaded')">
                     </div>
                 </a>
                 <div class="p-4">
@@ -603,9 +669,12 @@
             <!-- 证书 4：通义灵码 -->
             <article class="glass glass-hover overflow-hidden">
                 <a href="../证/cert-lingma.png" target="_blank" rel="noopener" class="block group">
-                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden">
+                    <div class="aspect-[3/4] bg-slate-800/60 relative overflow-hidden img-wrap">
                         <img src="../证/cert-lingma.png" alt="基于通义灵码实现高效AI编码实践证书"
-                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                             width="300" height="400"
+                             loading="lazy" decoding="async" fetchpriority="low"
+                             class="cert-img absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             onload="this.classList.add('loaded')">
                     </div>
                 </a>
                 <div class="p-4">
@@ -1226,7 +1295,9 @@ if (window.lucide && typeof window.lucide.createIcons === 'function') {
 
     const EXPERIENCES = {
         sing: {
-            media: '<img src="sing.jpg" alt="校园歌手大赛" class="absolute inset-0 w-full h-full object-cover">',
+            media: '<img src="sing.jpg" alt="校园歌手大赛" decoding="async" ' +
+                   'class="cert-img absolute inset-0 w-full h-full object-cover" ' +
+                   'onload="this.classList.add(\'loaded\')">',
             badge: { text: 'Sing', icon: 'music-2',
                      cls: 'bg-fuchsia-500/40 border-fuchsia-400/50 text-fuchsia-100' },
             title: '校园歌手大赛',
@@ -1243,7 +1314,9 @@ if (window.lucide && typeof window.lucide.createIcons === 'function') {
             ]
         },
         english: {
-            media: '<img src="english.jpg" alt="英语国际节" class="absolute inset-0 w-full h-full object-cover">',
+            media: '<img src="english.jpg" alt="英语国际节" decoding="async" ' +
+                   'class="cert-img absolute inset-0 w-full h-full object-cover" ' +
+                   'onload="this.classList.add(\'loaded\')">',
             badge: { text: 'English', icon: 'globe',
                      cls: 'bg-indigo-500/40 border-indigo-400/50 text-indigo-100' },
             title: '英语国际节 · 节目策划与主演',
