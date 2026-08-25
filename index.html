@@ -13,13 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet">
 
-    <!-- ========== Tailwind CSS（CDN） ========== -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ========== Tailwind CSS（CDN，defer 不阻塞 HTML 解析） ========== -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
 
-    <!-- ========== Lucide 图标库 ========== -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- ========== Lucide 图标库（defer，最后加载） ========== -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
 
     <script>
+        // Tailwind 配置（设置在 tailwind script 加载前也 OK，因为 CDN 版加载完会自动扫 window.tailwind.config）
         tailwind.config = {
             theme: {
                 extend: {
@@ -772,57 +773,9 @@
                     基于 HTML + CSS + Tailwind 构建，部署于 GitHub Pages，支持响应式与毛玻璃设计。
                 </p>
 
-                <!-- 志愿服务 / 社区主题矢量插画 -->
-                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
-                     class="w-full aspect-[2/1] rounded-2xl mb-4 block"
-                     preserveAspectRatio="xMidYMid slice" role="img"
-                     aria-label="社区志愿服务主题插画">
-                    <defs>
-                        <linearGradient id="volBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#0b1729"/>
-                            <stop offset="100%" stop-color="#020617"/>
-                        </linearGradient>
-                        <radialGradient id="volGlow1" cx="30%" cy="50%" r="55%">
-                            <stop offset="0%" stop-color="#10b981" stop-opacity="0.40"/>
-                            <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
-                        </radialGradient>
-                        <radialGradient id="volGlow2" cx="80%" cy="30%" r="45%">
-                            <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.30"/>
-                            <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-                        </radialGradient>
-                    </defs>
-
-                    <rect width="400" height="200" fill="url(#volBg)" rx="16"/>
-                    <rect width="400" height="200" fill="url(#volGlow1)"/>
-                    <rect width="400" height="200" fill="url(#volGlow2)"/>
-
-                    <!-- 装饰星点 -->
-                    <circle cx="50"  cy="40"  r="2"   fill="#34d399" opacity="0.55"/>
-                    <circle cx="350" cy="160" r="2"   fill="#22d3ee" opacity="0.55"/>
-                    <circle cx="80"  cy="170" r="1.5" fill="#34d399" opacity="0.45"/>
-                    <circle cx="370" cy="50"  r="1.5" fill="#22d3ee" opacity="0.45"/>
-
-                    <!-- 中心心形 -->
-                    <g transform="translate(200, 95)">
-                        <path d="M0,-12 C-5,-22 -22,-22 -22,-8 C-22,5 0,22 0,22 C0,22 22,5 22,-8 C22,-22 5,-22 0,-12 Z"
-                              fill="#10b981" fill-opacity="0.25" stroke="#34d399"
-                              stroke-width="2.5" stroke-linejoin="round"/>
-                    </g>
-
-                    <!-- 左人形 -->
-                    <g transform="translate(140, 100)" stroke="#67e8f9" stroke-width="2.5"
-                       fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="0" cy="0" r="10"/>
-                        <path d="M-15,30 Q0,18 15,30 L15,55 L-15,55 Z"/>
-                    </g>
-
-                    <!-- 右人形 -->
-                    <g transform="translate(260, 100)" stroke="#67e8f9" stroke-width="2.5"
-                       fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="0" cy="0" r="10"/>
-                        <path d="M-15,30 Q0,18 15,30 L15,55 L-15,55 Z"/>
-                    </g>
-                </svg>
+                <!-- 志愿服务 / 社区主题矢量插画（异步注入，先骨架后渲染） -->
+                <div id="proj-illu-vol" class="w-full aspect-[2/1] rounded-2xl mb-4 block overflow-hidden img-wrap"
+                     role="img" aria-label="社区志愿服务主题插画"></div>
 
                 <div class="flex flex-wrap gap-2">
                     <span class="badge"><i data-lucide="file-code-2" class="w-3 h-3"></i>HTML/CSS</span>
@@ -844,74 +797,9 @@
                     熟练使用 DeepSeek、Kimi、CodeX 等工具辅助编程与内容创作，并参与社区分享。
                 </p>
 
-                <!-- 篮球主题矢量插画 -->
-                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg"
-                     class="w-full aspect-[2/1] rounded-2xl mb-4 block"
-                     preserveAspectRatio="xMidYMid slice" role="img"
-                     aria-label="篮球主题插画">
-                    <defs>
-                        <linearGradient id="bballBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#1a1206"/>
-                            <stop offset="100%" stop-color="#020617"/>
-                        </linearGradient>
-                        <radialGradient id="bballGlow1" cx="70%" cy="50%" r="55%">
-                            <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
-                            <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-                        </radialGradient>
-                        <radialGradient id="bballGlow2" cx="20%" cy="30%" r="45%">
-                            <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.25"/>
-                            <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
-                        </radialGradient>
-                        <radialGradient id="bballSphere" cx="35%" cy="35%" r="65%">
-                            <stop offset="0%"  stop-color="#fb923c"/>
-                            <stop offset="60%" stop-color="#f97316"/>
-                            <stop offset="100%" stop-color="#c2410c"/>
-                        </radialGradient>
-                    </defs>
-
-                    <rect width="400" height="200" fill="url(#bballBg)" rx="16"/>
-                    <rect width="400" height="200" fill="url(#bballGlow1)"/>
-                    <rect width="400" height="200" fill="url(#bballGlow2)"/>
-
-                    <!-- 装饰星点 -->
-                    <circle cx="50"  cy="40"  r="2"   fill="#fbbf24" opacity="0.55"/>
-                    <circle cx="350" cy="160" r="2"   fill="#f97316" opacity="0.55"/>
-                    <circle cx="80"  cy="170" r="1.5" fill="#fbbf24" opacity="0.45"/>
-                    <circle cx="370" cy="50"  r="1.5" fill="#f97316" opacity="0.45"/>
-
-                    <!-- 抛物轨迹 -->
-                    <path d="M70 160 Q200 50 330 160" fill="none" stroke="#fbbf24"
-                          stroke-width="1.5" stroke-dasharray="3 5" opacity="0.5"/>
-
-                    <!-- 中心篮球 -->
-                    <g transform="translate(200, 100)">
-                        <circle cx="0" cy="0" r="40" fill="url(#bballSphere)"
-                                stroke="#ea580c" stroke-width="2"/>
-                        <line x1="-40" y1="0" x2="40" y2="0"
-                              stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>
-                        <line x1="0" y1="-40" x2="0" y2="40"
-                              stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>
-                        <path d="M-30,-26 Q0,0 30,26" fill="none"
-                              stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>
-                        <path d="M-30,26 Q0,0 30,-26" fill="none"
-                              stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>
-                    </g>
-
-                    <!-- 左下：抽象篮筐 -->
-                    <g transform="translate(60, 130)" stroke="#fbbf24"
-                       stroke-width="2" fill="none" opacity="0.7"
-                       stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="-12" y="0" width="24" height="16" rx="3"/>
-                        <line x1="0" y1="16" x2="0" y2="42"/>
-                    </g>
-
-                    <!-- 右上：3PT 标记 -->
-                    <text x="350" y="58" text-anchor="end"
-                          font-family="Plus Jakarta Sans, sans-serif"
-                          font-size="13" font-weight="700" fill="#fbbf24" opacity="0.85">
-                        3PT
-                    </text>
-                </svg>
+                <!-- 篮球主题矢量插画（异步注入，先骨架后渲染） -->
+                <div id="proj-illu-bball" class="w-full aspect-[2/1] rounded-2xl mb-4 block overflow-hidden img-wrap"
+                     role="img" aria-label="篮球主题插画"></div>
 
                 <div class="flex flex-wrap gap-2">
                     <span class="badge"><i data-lucide="sparkles" class="w-3 h-3"></i>DeepSeek</span>
@@ -1193,11 +1081,145 @@
 
 <script>
 /* ======================================================
-   Lucide 图标渲染
+   Lucide 图标渲染（延迟 + 空闲时执行，不阻塞卡片 DOM 渲染/滚动）
    ====================================================== */
-if (window.lucide && typeof window.lucide.createIcons === 'function') {
-    window.lucide.createIcons();
-}
+(function () {
+    'use strict';
+    function renderIcons() {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            try { window.lucide.createIcons(); } catch (_) {}
+        }
+    }
+    // Lucide 是 <script defer> 加载的，必须等它挂到 window
+    function whenLucideReady(cb) {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') { cb(); return; }
+        var tries = 0;
+        var t = setInterval(function () {
+            tries++;
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                clearInterval(t); cb();
+            } else if (tries > 200) { // 20s 还没加载就放弃
+                clearInterval(t);
+            }
+        }, 100);
+    }
+    // 首屏内容先显示，30ms 后用 rIC/setTimeout 再渲染图标（卡片先出，图标后补）
+    function scheduleIcons() {
+        var run = function () {
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(renderIcons, { timeout: 400 });
+            } else {
+                setTimeout(renderIcons, 80);
+            }
+        };
+        if (document.readyState === 'complete') { run(); }
+        else {
+            window.addEventListener('load', run, { once: true });
+            // 万 load 等太久，DOMContentLoaded 先触发一次
+            document.addEventListener('DOMContentLoaded', function () { setTimeout(run, 30); }, { once: true });
+        }
+    }
+    whenLucideReady(scheduleIcons);
+    // 暴露给 Modal/菜单等 JS 主动调用（用 rAF 包住不阻塞动画）
+    window.renderIconsWhenIdle = renderIcons;
+})();
+
+/* ======================================================
+   项目插画异步注入（SVG 复杂 DOM 不阻塞卡片首屏渲染）
+   ====================================================== */
+(function () {
+    'use strict';
+    var ILLUS = {};
+    // ---- 志愿服务 / 社区主题 ----
+    ILLUS.vol = '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full block" preserveAspectRatio="xMidYMid slice" role="img" aria-label="社区志愿服务主题插画">'
+      + '<defs>'
+      +   '<linearGradient id="p_volBg" x1="0%" y1="0%" x2="100%" y2="100%">'
+      +     '<stop offset="0%" stop-color="#0b1729"/><stop offset="100%" stop-color="#020617"/>'
+      +   '</linearGradient>'
+      +   '<radialGradient id="p_volG1" cx="30%" cy="50%" r="55%">'
+      +     '<stop offset="0%" stop-color="#10b981" stop-opacity="0.40"/><stop offset="100%" stop-color="#10b981" stop-opacity="0"/>'
+      +   '</radialGradient>'
+      +   '<radialGradient id="p_volG2" cx="80%" cy="30%" r="45%">'
+      +     '<stop offset="0%" stop-color="#22d3ee" stop-opacity="0.30"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>'
+      +   '</radialGradient>'
+      + '</defs>'
+      + '<rect width="400" height="200" fill="url(#p_volBg)"/>'
+      + '<rect width="400" height="200" fill="url(#p_volG1)"/>'
+      + '<rect width="400" height="200" fill="url(#p_volG2)"/>'
+      + '<circle cx="50"  cy="40"  r="2"   fill="#34d399" opacity="0.55"/>'
+      + '<circle cx="350" cy="160" r="2"   fill="#22d3ee" opacity="0.55"/>'
+      + '<circle cx="80"  cy="170" r="1.5" fill="#34d399" opacity="0.45"/>'
+      + '<circle cx="370" cy="50"  r="1.5" fill="#22d3ee" opacity="0.45"/>'
+      + '<g transform="translate(200, 95)">'
+      +   '<path d="M0,-12 C-5,-22 -22,-22 -22,-8 C-22,5 0,22 0,22 C0,22 22,5 22,-8 C22,-22 5,-22 0,-12 Z"'
+      +         ' fill="#10b981" fill-opacity="0.25" stroke="#34d399" stroke-width="2.5" stroke-linejoin="round"/>'
+      + '</g>'
+      + '<g transform="translate(140, 100)" stroke="#67e8f9" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">'
+      +   '<circle cx="0" cy="0" r="10"/><path d="M-15,30 Q0,18 15,30 L15,55 L-15,55 Z"/>'
+      + '</g>'
+      + '<g transform="translate(260, 100)" stroke="#67e8f9" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">'
+      +   '<circle cx="0" cy="0" r="10"/><path d="M-15,30 Q0,18 15,30 L15,55 L-15,55 Z"/>'
+      + '</g>'
+      + '</svg>';
+    // ---- 篮球主题 ----
+    ILLUS.bball = '<svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full block" preserveAspectRatio="xMidYMid slice" role="img" aria-label="篮球主题插画">'
+      + '<defs>'
+      +   '<linearGradient id="p_bbBg" x1="0%" y1="0%" x2="100%" y2="100%">'
+      +     '<stop offset="0%" stop-color="#1a1206"/><stop offset="100%" stop-color="#020617"/>'
+      +   '</linearGradient>'
+      +   '<radialGradient id="p_bbG1" cx="70%" cy="50%" r="55%">'
+      +     '<stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/><stop offset="100%" stop-color="#f97316" stop-opacity="0"/>'
+      +   '</radialGradient>'
+      +   '<radialGradient id="p_bbG2" cx="20%" cy="30%" r="45%">'
+      +     '<stop offset="0%" stop-color="#fbbf24" stop-opacity="0.25"/><stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>'
+      +   '</radialGradient>'
+      +   '<radialGradient id="p_bbSp" cx="35%" cy="35%" r="65%">'
+      +     '<stop offset="0%" stop-color="#fb923c"/><stop offset="60%" stop-color="#f97316"/><stop offset="100%" stop-color="#c2410c"/>'
+      +   '</radialGradient>'
+      + '</defs>'
+      + '<rect width="400" height="200" fill="url(#p_bbBg)"/>'
+      + '<rect width="400" height="200" fill="url(#p_bbG1)"/>'
+      + '<rect width="400" height="200" fill="url(#p_bbG2)"/>'
+      + '<circle cx="50"  cy="40"  r="2"   fill="#fbbf24" opacity="0.55"/>'
+      + '<circle cx="350" cy="160" r="2"   fill="#f97316" opacity="0.55"/>'
+      + '<circle cx="80"  cy="170" r="1.5" fill="#fbbf24" opacity="0.45"/>'
+      + '<circle cx="370" cy="50"  r="1.5" fill="#f97316" opacity="0.45"/>'
+      + '<path d="M70 160 Q200 50 330 160" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.5"/>'
+      + '<g transform="translate(200, 100)">'
+      +   '<circle cx="0" cy="0" r="40" fill="url(#p_bbSp)" stroke="#ea580c" stroke-width="2"/>'
+      +   '<line x1="-40" y1="0" x2="40" y2="0" stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>'
+      +   '<line x1="0" y1="-40" x2="0" y2="40" stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>'
+      +   '<path d="M-30,-26 Q0,0 30,26" fill="none" stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>'
+      +   '<path d="M-30,26 Q0,0 30,-26" fill="none" stroke="#7c2d12" stroke-width="1.5" opacity="0.7"/>'
+      + '</g>'
+      + '<g transform="translate(60, 130)" stroke="#fbbf24" stroke-width="2" fill="none" opacity="0.7" stroke-linecap="round" stroke-linejoin="round">'
+      +   '<rect x="-12" y="0" width="24" height="16" rx="3"/><line x1="0" y1="16" x2="0" y2="42"/>'
+      + '</g>'
+      + '<text x="350" y="58" text-anchor="end" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="700" fill="#fbbf24" opacity="0.85">3PT</text>'
+      + '</svg>';
+
+    function mount(id, html) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.innerHTML = html;
+    }
+    function schedule() {
+        var doMount = function () {
+            mount('proj-illu-vol',   ILLUS.vol);
+            mount('proj-illu-bball', ILLUS.bball);
+        };
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(doMount, { timeout: 800 });
+        } else {
+            setTimeout(doMount, 200);
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', schedule, { once: true });
+    } else {
+        schedule();
+    }
+})();
 
 /* ======================================================
    交互：复制邮箱 + Toast + 移动端菜单
@@ -1414,10 +1436,10 @@ if (window.lucide && typeof window.lucide.createIcons === 'function') {
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
 
-        // 异步渲染 Lucide 图标，避免阻塞 Modal 显示动画
+        // 异步渲染 Lucide 图标，避免阻塞 Modal 显示动画（只渲染 Modal 作用域）
         if (window.lucide && typeof window.lucide.createIcons === 'function') {
             requestAnimationFrame(function () {
-                window.lucide.createIcons();
+                try { window.lucide.createIcons({ root: modal }); } catch (_) {}
             });
         }
     }
@@ -1452,9 +1474,17 @@ if (window.lucide && typeof window.lucide.createIcons === 'function') {
         });
     });
 
-    // 重新渲染注入的 Lucide 图标
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-        window.lucide.createIcons();
+    // 重新渲染注入的 Lucide 图标（只对卡片局部渲染，空闲时执行）
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(function () {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                try {
+                    window.lucide.createIcons({
+                        root: document.getElementById('experience') || document.body
+                    });
+                } catch (_) {}
+            }
+        }, { timeout: 600 });
     }
 
     // 关闭：关闭按钮 / 点击 backdrop / ESC
